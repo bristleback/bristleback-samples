@@ -42,8 +42,8 @@
     var joinChatActionClass = dataController.getActionClass("JoinChat");
     joinChatActionClass.defineDefaultAction().setResponseHandler(onLogInCallback)
       .exceptionHandler
-      .setExceptionHandler("validationError", validationErrorCallback)
-      .setExceptionHandler("userExistsError", userExistsErrorCallback);
+      .setExceptionHandler("SerializationException", validationErrorCallback)
+      .setExceptionHandler("UserExistsException", userExistsErrorCallback);
 
     var sendTextActionClass = dataController.getActionClass("SendText");
     sendTextActionClass.defineDefaultAction();
@@ -89,7 +89,7 @@
 
     function userExistsErrorCallback() {
       $("#userNameErrorDiv")
-        .html("<span class='validationError'>User already exist, choose other nickname</span>");
+        .html("<span class='validationError'>User already exists, choose other nickname</span>");
       $("#userameField").css("border-color", "red");
     }
 
