@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>sample-parent</artifactId>
+    <groupId>pl.bristleback.sample</groupId>
+    <version>1.0</version>
+  </parent>
+  <groupId>pl.bristleback.sample</groupId>
+  <artifactId>sample-scrum-table</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>sample-scrum-table Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <build>
+    <finalName>sample-scrum-table</finalName>
+  </build>
+  <dependencies>
+  </dependencies>
+</project>

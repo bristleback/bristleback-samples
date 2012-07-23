@@ -1,0 +1,6 @@
+# intellij project files #
+##########################
+*.iml
+*.ipr
+*.iws
+target/*
