@@ -28,8 +28,6 @@
     var client = Bristleback.newClient(config);
     var dataController = client.dataController;
 
-    var currentTime = new Date();
-
     $(document).ready(function() {
       connect();
       addGUIListeners();
@@ -57,14 +55,12 @@
         actualUsersList(actualList);
       },
 
-      sendText: function(userName, userId, chatText) {
-        var millis = new Date().getTime() - currentTime.getTime();
-        Bristleback.Console.log("Minelo: " + millis + " milisekund");
+      sendText: function(user, chatText) {
         var messages = $(".messages");
         var chatFrame = $(".chatFrame");
-        var userOnList = $("#" + userId);
+        var userOnList = $("#" + user.id);
         if (chatText.finished) {
-          messages.append("<li><span>" + Bristleback.utils.escapeHTML(userName) + ": </span>" + Bristleback.utils.escapeHTML(chatText.text) + "</li>");
+          messages.append("<li><span>" + Bristleback.utils.escapeHTML(user.nickname) + ": </span>" + Bristleback.utils.escapeHTML(chatText.text) + "</li>");
           chatFrame.attr("scrollTop", chatFrame.attr("scrollHeight"));
           userOnList.empty();
         } else {
@@ -103,7 +99,6 @@
         text: textInput.val(),
         finished: finished
       };
-      currentTime = new Date();
       sendTextActionClass.executeDefault(Bristleback.CONNECTOR, textMessage);
       if (finished) {
         textInput.val("");

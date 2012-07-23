@@ -18,7 +18,7 @@ public class SendTextAction implements DefaultAction<ChatUser, ChatText> {
 
   @Action
   public Void executeDefault(ChatUser user, ChatText message) {
-    chatClientAction.sendText(user.getNickname(), user.getId(), message);
+    chatClientAction.sendText(user, message);
     return null;
   }
 }
