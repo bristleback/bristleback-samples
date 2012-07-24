@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Scrum table</title>
+
+
+  <script type="text/javascript" src="../webapp/js/jquery-1.5.1.min.js"></script>
+  <script type="text/javascript" src="../webapp/js/ui/jquery.ui.core.js"></script>
+  <script type="text/javascript" src="../webapp/js/ui/jquery.ui.widget.js"></script>
+  <script type="text/javascript" src="../webapp/js/ui/jquery.ui.mouse.js"></script>
+  <script type="text/javascript" src="../webapp/js/ui/jquery.ui.resizable.js"></script>
+  <script type="text/javascript" src="../webapp/js/ui/jquery.ui.draggable.js"></script>
+
+  <script type="text/javascript" src="../webapp/js/bristle-utils.js"></script>
+  <script type="text/javascript" src="../webapp/js/bristle-controller.js"></script>
+  <script type="text/javascript" src="../webapp/js/bristle-serialization.js"></script>
+  <script type="text/javascript" src="../webapp/js/bristle-core.js"></script>
+  <script type="text/javascript" src="../webapp/js/trimpath-template-1.0.38.js"></script>
+
+  <link type="text/css" href="../webapp/css/jquery-ui-1.8.12.custom.css" rel="stylesheet"/>
+  <link type="text/css" href="../webapp/css/style.css" rel="stylesheet"/>
+  <script type="text/javascript">
+    var config = {
+   //   serverUrl: "ws://localhost:8080/websocket",
+    };
+    var client = Bristleback.newClient(config);
+    var dataController = client.dataController;
+
+    var widgetActionClass = dataController.getActionClass("Widget");
+
+    widgetActionClass.defineAction("addWidget");
+    widgetActionClass.defineAction("resizeWidget");
+    widgetActionClass.defineAction("moveWidget");
+
+    var widgetClientActionClass = {
+      newWidget: function(widget) {
+        var id = widget.id;
+        appendNewNote(id, widget.noteName);
+        setWidthHeightPosition(widget);
+        setLeftTopPosition(widget);
+        addResizeAndDragSupport("#" + id);
+      },
+
+      resizeWidget: function(widget) {
+        setWidthHeightPosition(widget);
+      },
+
+      moveWidget: function(widget) {
+        setLeftTopPosition(widget);
+      },
+
+      widgetsList: function(widgets) {
+        for (var widgetIndex in widgets) {
+          var widget = widgets[widgetIndex];
+          appendNewNote(widget.id, widget.noteName);
+          setLeftTopPosition(widget);
+          setWidthHeightPosition(widget);
+          addResizeAndDragSupport("#" + widget.id);
+        }
+      }
+    };
+
+    dataController.registerClientActionClass("WidgetClientAction", widgetClientActionClass);
+
+    function requestChangePosition(ui) {
+      var widget = {
+        id: ui.helper.context.id,
+        position : {
+          top : ui.position.top,
+          left : ui.position.left
+        }
+      };
+      widgetActionClass.moveWidget(widget);
+    }
+
+    function requestChangeSize(ui) {
+      var widget = {
+        id: ui.helper.context.id,
+        position : {
+          height : ui.size.height,
+          width : ui.size.width
+        }
+      };
+      widgetActionClass.resizeWidget(widget);
+    }
+
+    function connect() {
+      client.connect();
+      // Bristleback.Console.enableConsole();
+    }
+
+    $(document).ready(function() {
+      connect();
+
+      addResizeAndDragSupport(".note");
+
+      $("#addNoteButton").click(function() {
+        var noteName = $("#noteName").val();
+        widgetActionClass.addWidget(noteName);
+      });
+    });
+
+    function addResizeAndDragSupport(elementSelector) {
+      $(elementSelector).resizable({
+        //          ghost: true,
+        alwaysRelative : true,
+        stop: function(event, ui) {
+          //do nothing for now
+        },
+        resize : function(event, ui) {
+          requestChangeSize(ui);
+        }
+      });
+
+      $(elementSelector).draggable({
+        containment: "#outer",
+        snap: true,
+        alwaysRelative: true,
+        handle: ".ui-widget-header",
+        start: function(event, ui) {
+          //do nothing for now
+        },
+        drag: function(event, ui) {
+          requestChangePosition(ui);
+
+        },
+        stop: function(event, ui) {
+          //do nothing for now
+        }
+      });
+
+      $(elementSelector).css("position", "absolute");
+    }
+
+    function appendNewNote(id, noteName) {
+      var newDiv = "<div id=\"" + id + "\" class=\"note draggable ui-widget-content\">\n  <h3 class=\"ui-widget-header\">" + noteName + "</h3>\n</div>\n";
+      $("#outer").append(newDiv);
+    }
+
+    function setLeftTopPosition(widget) {
+      var leftPos = widget.position.left;
+      var topPos = widget.position.top;
+      $("#" + widget.id).css("left", leftPos);
+      $("#" + widget.id).css("top", topPos);
+    }
+
+    function setWidthHeightPosition(widget) {
+      var height = widget.position.height;
+      var width = widget.position.width;
+      $("#" + widget.id).css("height", height);
+      $("#" + widget.id).css("width", width);
+    }
+
+
+  </script>
+</head>
+<body>
+<div style="border: solid 1px gray; width: 300px; margin-bottom: 10px; padding:  10px;">
+  <div><label for="noteName"><span class="bold">Note name</span></label><input type="text" id="noteName"/></div>
+  <div id="addNoteButton" class="fancyButton fancyButtonMediumSize">Add note</div>
+  <div class="clear"></div>
+</div>
+
+
+<div id="outer" style="padding: 10px;">
+  <!--
+<div id="note-1" class="note draggable ui-widget-content">
+  <h3 class="ui-widget-header">sample note four</h3>
+</div>
+<div id="note-2" class="note draggable ui-widget-content">
+  <h3 class="ui-widget-header">sample note three</h3>
+
+  &lt;!&ndash;<div class="noteHandler"></div>&ndash;&gt;
+  </div>
+  <div id="note-3" class="note draggable ui-widget-content">
+    <h3 class="ui-widget-header">sample note two</h3>
+
+    &lt;!&ndash;<div class="noteHandler"></div>&ndash;&gt;
+  </div>
+  <div id="note-4" class="note draggable ui-widget-content">
+    <h3 class="ui-widget-header">sample note one</h3>
+  </div>
+-->
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+#outer {
+  border: solid 1px green;
+  width: 800px;
+  height: 600px;
+}
+
+.note {
+  /*width: 100px;*/
+  /*height: 100px;*/
+  /*border: solid 1px black;*/
+  /*background: yellow;*/
+}
+
+.noteHandler {
+  width: 100%;
+  height: 30px;
+  background: #e0e000;
+  cursor: pointer;
+  /*float: left;*/
+}
+
+.noteContent {
+  background: #e0ff00;
+  margin: 1px;
+  /*width: 100%;*/
+  /*height: 100%;*/
+  /*float: left;*/
+}
+
+.clear {
+  clear: both;
+}
+
+.ui-wrapper {
+  border: solid 1px red;
+  visibility: visible;
+  display: block;
+}
+
+.note {
+  width: 300px;
+  height: 250px;
+  padding: 0.5em;
+}
+
+.note h3 {
+  text-align: center;
+  margin: 0;
+}
+
+.draggable {
+  width: 160px;
+  height: 160px;
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+.ui-resizable-helper {
+  border: 1px dotted gray;
+}
+
+.ui-widget-header {
+  cursor: pointer;
+}
+
+.temp {
+  width: 100px;
+  height: 100px;
+}
+
+.fancyButton {
+  margin-top: 5px;
+  padding: 3px;
+  cursor: pointer;
+  background: #8CC858;
+  text-align: center;
+  border: solid 1px black;
+  float: left;
+}
+
+.fancyButton:hover {
+  background: #6AA536;
+  border: solid 1px #8CC858;
+}
+
+.fancyButtonFixedSize {
+  width: 50%;
+}
+
+.fancyButtonMediumSize {
+  width: 220px;;
+}
+
+.bold {
+  font-weight: bold;
+}

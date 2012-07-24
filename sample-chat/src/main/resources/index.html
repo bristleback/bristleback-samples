@@ -3,14 +3,14 @@
 <html>
 <head>
   <title>Bristleback Chat</title>
-  <link rel="stylesheet" type="text/css" href="../../webapp/css/styles.css"/>
+  <link rel="stylesheet" type="text/css" href="../webapp/css/styles.css"/>
 
-  <script type="text/javascript" src="../../webapp/js/jquery.js"></script>
-  <script type="text/javascript" src="../../webapp/js/bristle-utils.js"></script>
-  <script type="text/javascript" src="../../webapp/js/bristle-controller.js"></script>
-  <script type="text/javascript" src="../../webapp/js/bristle-serialization.js"></script>
-  <script type="text/javascript" src="../../webapp/js/bristle-core.js"></script>
-  <script type="text/javascript" src="../../webapp/js/trimpath-template-1.0.38.js"></script>
+  <script type="text/javascript" src="../webapp/js/jquery.js"></script>
+  <script type="text/javascript" src="../webapp/js/bristle-utils.js"></script>
+  <script type="text/javascript" src="../webapp/js/bristle-controller.js"></script>
+  <script type="text/javascript" src="../webapp/js/bristle-serialization.js"></script>
+  <script type="text/javascript" src="../webapp/js/bristle-core.js"></script>
+  <script type="text/javascript" src="../webapp/js/trimpath-template-1.0.38.js"></script>
 
   <script type="text/javascript">
     var config = {
@@ -66,7 +66,7 @@
         } else {
           userOnList.empty();
           if (chatText.text !== "") {
-            userOnList.append("<table><tr><td><img src=\"../../webapp/img/ajax-loader.gif\"></td><td>" +
+            userOnList.append("<table><tr><td><img src=\"../webapp/img/ajax-loader.gif\"></td><td>" +
               Bristleback.utils.escapeHTML(chatText.text) + "</td></tr></table>");
           }
         }
@@ -244,7 +244,7 @@
         <li class="descriptionDivTableOfContentElement">
           <span>Sources</span>
 
-          <p><a href="http://code.google.com/p/bristleback/source/browse/#svn%2Ftrunk%2Fexamples%2FBristleChat">svn
+          <p><a href="index.html#svn%2Ftrunk%2Fexamples%2FBristleChat">svn
             repo</a>
           </p>
         </li>
