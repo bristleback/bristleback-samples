@@ -13,4 +13,8 @@ public class ChatUser extends DefaultUser {
   public void setNickname(String nickname) {
     this.nickname = nickname;
   }
+
+  public boolean isLogged() {
+    return nickname != null;
+  }
 }

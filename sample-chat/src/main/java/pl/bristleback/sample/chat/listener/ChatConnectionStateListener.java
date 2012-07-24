@@ -27,7 +27,9 @@ public class ChatConnectionStateListener implements ConnectionStateListener<Chat
 
   @Override
   public void connectorStopped(ChatUser user) {
-    activeUsers.removeUser(user.getNickname());
-    chatClientAction.userLeftChat(user.getNickname(), activeUsers.getUsers());
+    if (user.isLogged()) {
+      activeUsers.removeUser(user.getNickname());
+      chatClientAction.userLeftChat(user.getNickname(), activeUsers.getUsers());
+    }
   }
 }
