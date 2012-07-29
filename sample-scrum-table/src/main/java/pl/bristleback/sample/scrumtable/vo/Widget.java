@@ -41,7 +41,7 @@ public class Widget implements Comparable<Widget> {
 
   @Override
   public int compareTo(Widget widget) {
-    return this.id.compareTo(widget.getId());
+    return this.noteName.compareTo(widget.getNoteName());
   }
 
   @Override
@@ -51,7 +51,7 @@ public class Widget implements Comparable<Widget> {
 
     Widget widget = (Widget) o;
 
-    if (id != null ? !id.equals(widget.id) : widget.id != null) return false;
+    if (noteName != null ? !noteName.equals(widget.noteName) : widget.noteName != null) return false;
 
     return true;
   }

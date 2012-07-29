@@ -22,16 +22,35 @@
   <link type="text/css" href="../webapp/css/style.css" rel="stylesheet"/>
   <script type="text/javascript">
     var config = {
-   //   serverUrl: "ws://localhost:8080/websocket",
+      //   serverUrl: "ws://localhost:8080/websocket",
+      OnOpen: function(event) {
+        $('#connectionStatus').text("Connected.");
+      },
+      OnClose: function(event) {
+        $('#connectionStatus').text("Disconnected. Press F5 to connect again.");
+      }
     };
     var client = Bristleback.newClient(config);
     var dataController = client.dataController;
 
     var widgetActionClass = dataController.getActionClass("Widget");
 
-    widgetActionClass.defineAction("addWidget");
+    widgetActionClass.defineAction("addWidget")
+      .exceptionHandler
+      .setExceptionHandler("SerializationException", validationErrorCallback)
+      .setExceptionHandler("WidgetExistsException", widgetExistsErrorCallback);
     widgetActionClass.defineAction("resizeWidget");
     widgetActionClass.defineAction("moveWidget");
+
+    function validationErrorCallback() {
+      $('#errors').text("Please specify widget name");
+      $("#errors").show();
+    }
+
+    function widgetExistsErrorCallback() {
+      $('#errors').text("Widget with given name already exists");
+      $("#errors").show();
+    }
 
     var widgetClientActionClass = {
       newWidget: function(widget) {
@@ -96,6 +115,7 @@
       addResizeAndDragSupport(".note");
 
       $("#addNoteButton").click(function() {
+        $("#errors").hide();
         var noteName = $("#noteName").val();
         widgetActionClass.addWidget(noteName);
       });
@@ -156,12 +176,16 @@
   </script>
 </head>
 <body>
-<div style="border: solid 1px gray; width: 300px; margin-bottom: 10px; padding:  10px;">
+<div style="border: solid 1px gray; float:left;width: 300px; margin-bottom: 10px; padding:  10px;">
   <div><label for="noteName"><span class="bold">Note name</span></label><input type="text" id="noteName"/></div>
   <div id="addNoteButton" class="fancyButton fancyButtonMediumSize">Add note</div>
   <div class="clear"></div>
 </div>
 
+<div style="float:left;">
+  <div id="connectionStatus" style="margin-top:10px; margin-left:15px">dupa</div>
+  <div id="errors" style="color:red;display:none; font-weight:bold; margin-top:15px; margin-left:15px"></div>
+</div>
 
 <div id="outer" style="padding: 10px;">
   <!--
