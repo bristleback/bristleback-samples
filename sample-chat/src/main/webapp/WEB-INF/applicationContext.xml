@@ -23,17 +23,6 @@
     <property name="engineName" value="system.engine.jetty.servlet"/>
   </bean>
 
-  <bean id="bristlebackServlet"
-        class="pl.bristleback.server.bristle.engine.servlet.BristlebackHttpHandler">
-    <property name="initialConfigurationResolver" ref="initPojoConfigResolver"/>
-  </bean>
-
-  <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-    <property name="mappings">
-      <map>
-        <entry key="**/*" value-ref="bristlebackServlet"/>
-      </map>
-    </property>
-  </bean>
+  <bb:servlet configurationResolver="initPojoConfigResolver"/>
 
 </beans>

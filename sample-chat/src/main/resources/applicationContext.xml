@@ -21,7 +21,5 @@
     <property name="userFactory" value="chatUserFactory"/>
   </bean>
 
-  <bean id="bristlebackApp" class="pl.bristleback.server.bristle.app.StandaloneServerRunner">
-    <property name="initialConfigurationResolver" ref="initPojoConfigResolver"/>
-  </bean>
+  <bb:standaloneServer configurationResolver="initPojoConfigResolver"/>
 </beans>
