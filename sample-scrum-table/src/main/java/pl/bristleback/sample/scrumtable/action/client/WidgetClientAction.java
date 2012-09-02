@@ -18,17 +18,17 @@ public class WidgetClientAction {
 
   @ClientAction
   public SendCondition newWidget(Widget newWidget) {
-    return new AllUsersCondition();
+    return AllUsersCondition.getInstance();
   }
 
   @ClientAction
   public SendCondition resizeWidget(Widget widget) {
-    return new AllUsersCondition();
+    return AllUsersCondition.getInstance();
   }
 
   @ClientAction
   public SendCondition moveWidget(Widget widget) {
-    return new AllUsersCondition();
+    return AllUsersCondition.getInstance();
   }
 
   @ClientAction

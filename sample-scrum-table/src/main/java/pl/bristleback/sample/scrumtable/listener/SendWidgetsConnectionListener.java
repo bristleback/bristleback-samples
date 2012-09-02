@@ -18,16 +18,11 @@ public class SendWidgetsConnectionListener implements ConnectionStateListener {
   private WidgetService widgetService;
 
   @Override
-  public void init(BristlebackConfig bristlebackConfig) {
-
-  }
-
-  @Override
-  public void connectorStarted(IdentifiedUser scrumTableUser) {
+  public void userConnected(IdentifiedUser scrumTableUser) {
     widgetClientAction.widgetsList(widgetService.getAllWidgets(), scrumTableUser);
   }
 
   @Override
-  public void connectorStopped(IdentifiedUser scrumTableUser) {
+  public void userDisconnected(IdentifiedUser identifiedUser) {
   }
 }
