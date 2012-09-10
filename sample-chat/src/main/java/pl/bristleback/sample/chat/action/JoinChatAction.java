@@ -7,13 +7,13 @@ import pl.bristleback.sample.chat.user.ActiveUsers;
 import pl.bristleback.sample.chat.user.ChatUser;
 import pl.bristleback.server.bristle.api.action.DefaultAction;
 import pl.bristleback.server.bristle.api.annotations.Action;
-import pl.bristleback.server.bristle.api.annotations.AnnotatedActionClass;
+import pl.bristleback.server.bristle.api.annotations.ActionClass;
 import pl.bristleback.server.bristle.api.annotations.Bind;
 
 import java.util.List;
 
 @Controller
-@AnnotatedActionClass(name = "JoinChat")
+@ActionClass(name = "JoinChat")
 public class JoinChatAction implements DefaultAction<ChatUser, String> {
 
   @Autowired

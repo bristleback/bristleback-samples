@@ -7,12 +7,12 @@ import pl.bristleback.sample.scrumtable.service.WidgetService;
 import pl.bristleback.sample.scrumtable.vo.Position;
 import pl.bristleback.sample.scrumtable.vo.Widget;
 import pl.bristleback.server.bristle.api.annotations.Action;
-import pl.bristleback.server.bristle.api.annotations.AnnotatedActionClass;
+import pl.bristleback.server.bristle.api.annotations.ActionClass;
 import pl.bristleback.server.bristle.api.annotations.Bind;
 
 
 @Controller
-@AnnotatedActionClass(name = "Widget")
+@ActionClass(name = "Widget")
 public class WidgetAction {
 
   @Autowired
