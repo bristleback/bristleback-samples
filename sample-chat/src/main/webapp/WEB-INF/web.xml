@@ -7,15 +7,6 @@
   <display-name>bristleback-chat-sampple</display-name>
 
   <servlet>
-    <servlet-name>bristlebackServlet</servlet-name>
-    <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>bristlebackServlet</servlet-name>
-    <url-pattern>/websocket</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
         <servlet-name>springServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
