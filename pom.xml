@@ -13,6 +13,9 @@
     <module>sample-scrum-table</module>
     <module>sample-chat</module>
   </modules>
+  <properties>
+   <bristleback.server.version>0.2.1</bristleback.server.version>
+  </properties>
 
   <build>
     <pluginManagement>
@@ -34,7 +37,7 @@
     <dependency>
       <groupId>pl.bristleback</groupId>
       <artifactId>bristleServer</artifactId>
-      <version>0.2.0</version>
+      <version>${bristleback.server.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
