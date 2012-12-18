@@ -1,0 +1,179 @@
+#outer {
+  width: 800px;
+  height: 600px;
+}
+
+.noteHandler {
+  width: 100%;
+  height: 30px;
+  background: #e0e000;
+  cursor: pointer;
+}
+
+.noteContent {
+  background: #e0ff00;
+  margin: 1px;
+}
+
+.clear {
+  clear: both;
+}
+
+.ui-wrapper {
+  border: solid 1px red;
+  visibility: visible;
+  display: block;
+}
+
+.note {
+  width: 300px;
+  height: 250px;
+  padding: 0.2em;
+}
+
+.note h3 {
+  text-align: center;
+  margin: 0;
+}
+
+.draggable {
+  width: 160px;
+  height: 160px;
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+.ui-resizable-helper {
+  border: 1px dotted gray;
+}
+
+.ui-widget-header {
+  cursor: pointer;
+  border: 1px solid #3f7506;
+  background: #3a8104;
+  color: #ffffff;
+  font-weight: normal;
+}
+
+.temp {
+  width: 100px;
+  height: 100px;
+}
+
+.fancyButton {
+  margin-top: 5px;
+  padding: 3px;
+  cursor: pointer;
+  background: #8CC858;
+  text-align: center;
+  border: solid 1px black;
+  float: left;
+}
+
+.fancyButton:hover {
+  background: #6AA536;
+  border: solid 1px #8CC858;
+}
+
+.fancyButtonFixedSize {
+  width: 50%;
+}
+
+.fancyButtonMediumSize {
+  width: 220px;;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.notes-table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  height: 100%;
+  width: 100%;
+}
+
+.notes-table td, th {
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+}
+
+.save-button {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.noteLabel {
+  float: left;
+  margin-right: 3px;
+}
+
+.switcher {
+  font-weight: bold;
+}
+
+.edit-button, edit-button {
+  float: right;
+  font-weight: bold;
+}
+
+.input-title, .input-description, .input-owner, .input-time {
+  width: 98%;
+}
+
+.title-label {
+  text-align: center;
+}
+
+ul#icons {
+  margin: 0;
+  padding: 0;
+}
+
+ul#icons li {
+  margin: 2px;
+  position: relative;
+  padding: 4px 0;
+  cursor: pointer;
+  float: left;
+  list-style: none;
+}
+
+ul#icons span.ui-icon {
+  float: left;
+  margin: 0 4px;
+}
+
+.edit-mode {
+}
+
+.description-value {
+  min-height: 65px;
+}
+
+.ui-draggable-disabled {
+  opacity: .8;
+  filter: Alpha(Opacity = 80);
+  background-image: none;
+}
+
+.ui-resizable-disabled {
+  opacity: .8;
+  filter: Alpha(Opacity = 80);
+  background-image: none;
+}
+
+.main-window {
+  width: 800px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.notes-container {
+  padding: 10px;
+}
+
