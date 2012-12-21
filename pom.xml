@@ -10,7 +10,6 @@
   <name>Bristleback Samples parent project</name>
 
   <modules>
-    <module>sample-scrum-table</module>
     <module>scrumtable</module>
     <module>sample-chat</module>
   </modules>
