@@ -2,7 +2,7 @@ var Sample = {};
 
 function prepareClient() {
   var config = {
-    serverUrl: "ws://185.5.96.56/chat/websocket",
+    serverUrl: "ws://samples.bristleback.pl/chat/websocket",
     OnOpen: function (event) {
       switchToLoggingScreen();
       Sample.joinChatActionClass.executeDefault(Bristleback.CONNECTOR, Sample.username);
