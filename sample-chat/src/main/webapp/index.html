@@ -2,261 +2,78 @@
   "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="css/styles2.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bristleback Chat</title>
-  <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/bristle.js"></script>
-
-  <script type="text/javascript">
-    var config = {
-      serverUrl: "ws://185.5.96.56/chat/websocket",
-      OnOpen: function(event) {
-        $('#status').text("The WebSocket Connection Is Open.");
-      },
-      OnClose: function(event) {
-        $(".disconnectedDiv").removeClass("hidden");
-        $(".sendMessage").addClass("hidden");
-        $(".users").addClass("hidden");
-        $(".messages").addClass("hidden");
-      }
-    };
-    var client = Bristleback.newClient(config);
-    var dataController = client.dataController;
-
-    $(document).ready(function() {
-      connect();
-      addGUIListeners();
-      $("#userameField").focus();
-    });
-
-    function connect() {
-      client.connect();
-      // Bristleback.Console.enableConsole();
-    }
-
-    var joinChatActionClass = dataController.getActionClass("JoinChat");
-    joinChatActionClass.defineDefaultAction().setResponseHandler(onLogInCallback)
-      .exceptionHandler
-      .setExceptionHandler("SerializationException", validationErrorCallback)
-      .setExceptionHandler("UserExistsException", userExistsErrorCallback);
-
-    var sendTextActionClass = dataController.getActionClass("SendText");
-    sendTextActionClass.defineDefaultAction();
-
-    var chatClientActionClass = {
-      newUser: function(userName, actualList) {
-        var messages = $(".messages");
-        messages.append("<li><span>" + userName + " has joined chat </span></li>");
-        actualUsersList(actualList);
-      },
-
-      sendText: function(user, chatText) {
-        var messages = $(".messages");
-        var chatFrame = $(".chatFrame");
-        var userOnList = $("#" + user.id);
-        if (chatText.finished) {
-          messages.append("<li><span>" + Bristleback.utils.escapeHTML(user.nickname) + ": </span>" + Bristleback.utils.escapeHTML(chatText.text) + "</li>");
-          chatFrame.attr("scrollTop", chatFrame.attr("scrollHeight"));
-          userOnList.empty();
-        } else {
-          userOnList.empty();
-          if (chatText.text !== "") {
-            userOnList.append("<table><tr><td><img src=\"img/ajax-loader.gif\"></td><td>" +
-              Bristleback.utils.escapeHTML(chatText.text) + "</td></tr></table>");
-          }
-        }
-
-      },
-
-      userLeftChat: function(userName, actualList) {
-        var messages = $(".messages");
-        messages.append("<li><span>" + userName + " has left chat </span></li>");
-        actualUsersList(actualList);
-      }
-    };
-
-    dataController.registerClientActionClass("ChatClientAction", chatClientActionClass);
-    function validationErrorCallback() {
-      $("#userNameErrorDiv")
-        .html("<span class='validationError'>Username required</span>");
-      $("#userameField").css("border-color", "red");
-    }
-
-    function userExistsErrorCallback() {
-      $("#userNameErrorDiv")
-        .html("<span class='validationError'>User already exists, choose other nickname</span>");
-      $("#userameField").css("border-color", "red");
-    }
-
-    function sendText(finished) {
-      var textInput = $("#messageText");
-      var textMessage = {
-        text: textInput.val(),
-        finished: finished
-      };
-      sendTextActionClass.executeDefault(Bristleback.CONNECTOR, textMessage);
-      if (finished) {
-        textInput.val("");
-      }
-    }
-
-    function enterChat() {
-      $(".loginBox").addClass("hidden");
-      $(".sendMessage").removeClass("hidden");
-      scrollDownChat();
-      $("#messageText").focus();
-    }
-
-    function onLogInCallback(users) {
-      $(".loginBox").addClass("hidden");
-      $(".sendMessage").removeClass("hidden");
-      var messages = $(".messages");
-      scrollDownChat();
-      $("#messageText").focus();
-      actualUsersList(users)
-    }
-
-    function actualUsersList(users) {
-      var usersList = $(".users");
-      usersList.empty();
-      for (var user in users) {
-        usersList.append("<li>" + Bristleback.utils.escapeHTML(users[user].nickname) + "<div class=\"instantMsg\" id=\"" + users[user].id + "\"></div></li>")
-      }
-    }
-
-    function scrollDownChat() {
-      var chatFrame = $(".chatFrame");
-      chatFrame.attr("scrollTop", chatFrame.attr("scrollHeight"));
-    }
-
-    function addGUIListeners() {
-      $("#userameField").keyup(function(e) {
-        if (e.keyCode == 13) {
-          $("#loginButton").click();
-        }
-      });
-
-      $("#loginButton").click(function() {
-        var username = $("#userameField").val();
-        joinChatActionClass.executeDefault(Bristleback.CONNECTOR, username);
-      });
-
-      $("#sendMessage").click(function() {
-        sendText(true);
-      });
-
-      $("#messageText").keyup(function(e) {
-        if (e.keyCode == 13) {
-          sendText(true);
-        } else {
-          sendText(false);
-        }
-      });
-
-      $("#logout").click(function() {
-        client.disconnect();
-      })
-    }
-
-  </script>
+  <script type="text/javascript" src="js/bristleChat.js"></script>
 </head>
 
 <body>
 
-<div class="contentWrapper">
-  <h3>Bristleback real time chat</h3>
+<header>
+  <div id="headerDiv">
+    <div id="logoDiv">
+      <a href="index.html" id="logoLink">
+        <img src="img/logo.png" alt="bristleback.pl">
+      </a>
 
-  <div class="mainContent">
-    <div class="chatContentBox">
-
-      <div class="outer">
-        <div class="leftBar">
-          <div class="chatFrame">
-            <ul class="messages">
-
-            </ul>
-          </div>
-          <div class="sendMessageFrame">
-            <div class="loginBox">
-              <div id="userNameErrorDiv"></div>
-              <label for="userameField">Nickname:</label>
-              <input type="text" name="username" id="userameField">
-
-              <div id="loginButton" class="fancyButton fancyButtonFixedSize">Join chat</div>
-            </div>
-            <div class="clear"></div>
-            <div class="sendMessage hidden">
-              <input type="text" name="messageText" id="messageText">
-
-              <div id="sendMessage" class="fancyButton fancyButtonMediumSize">Send</div>
-              <div id="logout" class="fancyButton fancyButtonMediumSize" style="margin-left: 48px;">Logout</div>
-              <div class="clear"></div>
-            </div>
-
-            <div class="disconnectedDiv hidden">
-              <h4 style="font-family:verdana, sans-serif;">Disconnected from the server</h4>
-
-              <h4 style="font-family:verdana, sans-serif;">Press F5 to connect again.</h4>
-            </div>
-          </div>
-        </div>
-        <div class="rightBar">
-          <ol class="users">
-
-          </ol>
-        </div>
-        <div class="clear"></div>
+      <div id="subheader">
+        Responsive chat sample
       </div>
     </div>
 
-    <div class="descriptionBox">
-      <h4 style="font-family:verdana, sans-serif; text-align:center;">Description</h4>
-
-      <ol class="descriptionDivTableOfContent">
-        <li class="descriptionDivTableOfContentElement">
-          <span>Summary</span>
-
-          <p>This sample application demonstrates usage of Brisleback server in chat application. Each written character
-            is
-            directly send to all chat users. You can see how user is writing message under nickname on users list.</p>
-        <li class="descriptionDivTableOfContentElement">
-          <span>How it works</span>
-
-          <ol class="howItWorksDescription">
-            <li>Data typed by user is sent to server, server processes data and broadcast it back to all logged in
-              users.
-            </li>
-            <li>
-              When new user logs in, all chat participants are notified, list is updated
-            </li>
-            <li>
-              Every written data is directly send to server, processed and send to all users, so you see every typed
-              character.
-            </li>
-          </ol>
-        </li>
-        <li class="descriptionDivTableOfContentElement">
-          <span>Sources</span>
-
-          <p><a href="https://github.com/bristleback/bristleback-samples">GIT
-            repo</a>
-          </p>
-        </li>
-        <li class="descriptionDivTableOfContentElement">
-          <span>Authors</span>
-
-          <p>Bristleback server team</p></li>
-        <li class="descriptionDivTableOfContentElement">
-          <span>Website</span>
-
-          <p><a href="http://bristleback.pl">bristleback.pl</a></p>
-        </li>
-      </ol>
+    <div id="rightHeaderDiv">
+      <div id="connectionStatusContainer">
+        <span class="fontOnDarkBackground b">Connection status: </span>
+        <img id="statusIcon" src="img/status-busy.png" alt="disconnected">
+        <span id="connectionStatus" class="fontOnDarkBackground b">disconnected</span>
+      </div>
     </div>
   </div>
-</div>
+</header>
 
+<content>
+  <div id="main">
+    <div id="content">
+
+      <div id="loginPage">
+        <input type="text" id="login">
+        <input type="button" id="loginButton" value="Log in with your nickname">
+        <div id="loginErrors"></div>
+      </div>
+
+      <div id="loggingPage">
+        <div>Logging in...</div>
+      </div>
+
+      <div id="afterLogInPane">
+
+        <div id="outerChatFrame">
+          <div id="chatFrame">
+            <ul id="messages">
+            </ul>
+          </div>
+          <div id="usersListContainer">
+            <ol class="users">
+
+            </ol>
+          </div>
+        </div>
+
+        <input type="text" id="speakChannel" class="bordered b">
+      </div>
+    </div>
+
+  </div>
+</content>
+
+<footer>
+  © Copyright 2012-2013 <a href="http://bristleback.pl" class="classicLinkBold">Bristleback Server</a>
+</footer>
 
 </body>
 </html>

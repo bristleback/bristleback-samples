@@ -14,7 +14,7 @@
     <module>sample-chat</module>
   </modules>
   <properties>
-   <bristleback.server.version>0.2.1</bristleback.server.version>
+   <bristleback.server.version>0.3.0</bristleback.server.version>
   </properties>
 
   <build>
