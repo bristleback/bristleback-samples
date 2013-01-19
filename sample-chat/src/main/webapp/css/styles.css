@@ -293,5 +293,9 @@ and (max-width : 649px) {
     width: 100%;
     float: right;
   }
+
+  #sourcesDiv {
+    display: none;
+  }
 }
 
