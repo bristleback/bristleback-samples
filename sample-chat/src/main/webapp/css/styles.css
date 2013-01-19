@@ -114,8 +114,8 @@ footer {
 }
 
 #outerChatFrame {
-  border-right: 1px #ffffff solid;
-  border-left: 1px #ffffff solid;
+  border-right: 1px #999999 solid;
+  border-left: 1px #999999 solid;
   height: 455px;
 }
 
@@ -143,8 +143,8 @@ footer {
   padding-top: 1px;
   overflow-y: auto;
   overflow-x: auto;
-  border-left: #ffffff 1px solid;
-  height: 450px;
+  border-left: #999999 1px solid;
+  height: 454px;
 }
 
 .users {
@@ -153,7 +153,6 @@ footer {
 }
 
 .users li {
-
   padding: 4px 2px 4px 10px;
 
 }
