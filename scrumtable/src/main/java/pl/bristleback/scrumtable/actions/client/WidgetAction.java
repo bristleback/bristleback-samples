@@ -2,6 +2,14 @@ package pl.bristleback.scrumtable.actions.client;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import pl.bristleback.scrumtable.services.WidgetService;
 import pl.bristleback.scrumtable.vo.Position;
@@ -29,10 +37,33 @@ public class WidgetAction {
 
   @Action
   public void userLogged(DefaultUser user) {
+    initSpringIntegration(user);
     widgetService.sendAllWidgets(user);
   }
 
+  private void initSpringIntegration(DefaultUser user) {
+
+  }
+
+/*  public Authentication authenticate( String username, String password )
+  {
+    UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( username, password );
+
+    Authentication auth = _authProvider.authenticate( token );
+    if (null != auth)
+    {
+      SecurityContextHolder.getContext().setAuthentication( auth );
+
+      _eventPublisher.publishEvent( new InteractiveAuthenticationSuccessEvent( auth, this.getClass() ) );
+
+      return auth;
+    }
+    throw new BadCredentialsException( "null authentication" );
+  }*/
+
+
   @Action
+  @PreAuthorize("hasRole('supervisor') or hasRole('teller')" )
   public void resizeWidget(Widget widget) {
     widgetService.resizeWidget(widget);
   }

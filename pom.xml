@@ -12,9 +12,10 @@
   <modules>
     <module>scrumtable</module>
     <module>sample-chat</module>
+    <module>tutorial-chat</module>
   </modules>
   <properties>
-   <bristleback.server.version>0.3.0</bristleback.server.version>
+   <bristleback.server.version>0.2.1</bristleback.server.version>
   </properties>
 
   <build>
@@ -44,6 +45,16 @@
       <artifactId>junit</artifactId>
       <version>4.8.2</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>3.1.3.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>3.1.3.RELEASE</version>
     </dependency>
   </dependencies>
 </project>

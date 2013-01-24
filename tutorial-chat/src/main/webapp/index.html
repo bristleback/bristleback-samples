@@ -1,0 +1,46 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/bristle.js"></script>
+  <script type="text/javascript" src="js/bristleChat.js"></script>
+</head>
+
+<body>
+
+  <div id="main">
+    <div id="content">
+
+      <div id="loginPage">
+        <input type="text" id="login">
+        <input type="button" id="loginButton" value="Log in with your nickname">
+        <div id="loginErrors"></div>
+      </div>
+
+
+      <div id="afterLogInPane">
+
+        <div id="outerChatFrame">
+          <div id="chatFrame">
+            <ul id="messages">
+            </ul>
+          </div>
+          <div id="usersListContainer">
+            <ol class="users">
+
+            </ol>
+          </div>
+        </div>
+        <div style="padding-left: 40px;">
+          <input type="text" id="speakChannel" class="bordered b">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</body>
+</html>
