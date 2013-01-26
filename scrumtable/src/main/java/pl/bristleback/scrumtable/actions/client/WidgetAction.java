@@ -37,30 +37,8 @@ public class WidgetAction {
 
   @Action
   public void userLogged(DefaultUser user) {
-    initSpringIntegration(user);
     widgetService.sendAllWidgets(user);
   }
-
-  private void initSpringIntegration(DefaultUser user) {
-
-  }
-
-/*  public Authentication authenticate( String username, String password )
-  {
-    UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( username, password );
-
-    Authentication auth = _authProvider.authenticate( token );
-    if (null != auth)
-    {
-      SecurityContextHolder.getContext().setAuthentication( auth );
-
-      _eventPublisher.publishEvent( new InteractiveAuthenticationSuccessEvent( auth, this.getClass() ) );
-
-      return auth;
-    }
-    throw new BadCredentialsException( "null authentication" );
-  }*/
-
 
   @Action
   @PreAuthorize("hasRole('supervisor') or hasRole('teller')" )
