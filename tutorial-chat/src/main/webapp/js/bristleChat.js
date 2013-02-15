@@ -108,16 +108,23 @@ function addGUIListeners() {
     Chat.username = $("#login").val();
     Chat.client.connect();
   });
+
+  $("#sendMessageButton").click(function(){
+    var text = $("#speakChannel").val();
+    sendTextMessageToServer(text);
+  })
 }
 
 function addMessage(boldText, normalText) {
-  // ?
-  Chat.sendTextActionClass.executeDefault(Bristleback.CONNECTOR, boldText);
-
   normalText = normalText || "";
   $("#messages").append("<li><span>" + boldText + " </span>" + normalText + "</li>");
   scrollDownChat();
 }
+
+function sendTextMessageToServer(text) {
+  Chat.sendTextActionClass.executeDefault(Bristleback.CONNECTOR, {'text': text});
+}
+
 
 function actualUsersList(users) {
   var usersList = $(".users");
