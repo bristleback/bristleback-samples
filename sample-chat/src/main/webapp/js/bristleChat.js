@@ -9,7 +9,6 @@ function prepareClient() {
     },
     OnClose: function (event) {
       switchToLoginScreen();
-      Sample.joinChatActionClass.executeDefault(Bristleback.CONNECTOR, Sample.username);
     }
   };
   Sample.client = Bristleback.newClient(config);
