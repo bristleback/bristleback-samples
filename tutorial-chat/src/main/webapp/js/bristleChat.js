@@ -4,7 +4,7 @@ var Chat = {};
 function prepareClient() {
   var config = {
     /* url of backend server, 8765 is default port for standalone app, can be changed in server configuration */
-    serverUrl: "ws://localhost:8765/websocket",
+    serverUrl: "ws://samples.bristleback.pl/tutorial-chat/websocket",
     /* function invoked after establishing connection */
     OnOpen: function (event) {
       /**
