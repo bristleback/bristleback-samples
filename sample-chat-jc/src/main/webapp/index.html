@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bristleback Chat</title>
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/bristle.js"></script>
+  <script type="text/javascript" src="js/bristleChat.js"></script>
+</head>
+
+<body>
+
+<header>
+  <div id="headerDiv">
+    <div id="logoDiv">
+      <a href="index.html" id="logoLink">
+        <img src="img/logo.png" alt="bristleback.pl">
+      </a>
+
+      <div id="subheader">
+        Responsive chat sample
+      </div>
+    </div>
+
+    <div id="rightHeaderDiv">
+      <div class="rightHeaderElement">
+        <span class="fontOnDarkBackground b">Connection status: </span>
+        <img id="statusIcon" src="img/status-busy.png" alt="disconnected">
+        <span id="connectionStatus" class="fontOnDarkBackground b">disconnected</span>
+      </div>
+      <div id="sourcesDiv" class="rightHeaderElement">
+        <span class="fontOnDarkBackground b">Sources: </span>
+        <a href="https://github.com/bristleback/bristleback-samples" class="classicLink fontOnDarkBackground b">Samples Git repo</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<content>
+  <div id="main">
+    <div id="content">
+
+      <div id="loginPage">
+        <input type="text" id="login">
+        <input type="button" id="loginButton" value="Log in with your nickname">
+        <div id="loginErrors"></div>
+      </div>
+
+      <div id="loggingPage">
+        <div>Logging in...</div>
+      </div>
+
+      <div id="afterLogInPane">
+
+        <div id="outerChatFrame">
+          <div id="chatFrame">
+            <ul id="messages">
+            </ul>
+          </div>
+          <div id="usersListContainer">
+            <ol class="users">
+
+            </ol>
+          </div>
+        </div>
+
+        <input type="text" id="speakChannel" class="bordered b">
+      </div>
+    </div>
+
+  </div>
+</content>
+
+<footer>
+  © Copyright 2012-2013 <a href="http://bristleback.pl" class="classicLinkBold">Bristleback Server</a>
+</footer>
+
+</body>
+</html>
