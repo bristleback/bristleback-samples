@@ -4,7 +4,7 @@ var Chat = {};
 function prepareClient() {
   var config = {
     /* url of backend server, 8765 is default port for standalone app, can be changed in server configuration */
-    serverUrl: "ws://localhost:8765/websocket",
+    serverUrl: "ws://samples.bristleback.pl/tutorial-chat/websocket",
     /* function invoked after establishing connection */
     OnOpen: function (event) {
       /**
@@ -26,8 +26,7 @@ function prepareClient() {
 }
 
 
-/*----------------- ACTION CLASSES*/
-
+/*----------------- ACTION CLASSES ---------------------------*/
 function prepareActionClasses() {
   defineJoinChatActionClass();
   defineSendTextActionClass();
@@ -73,8 +72,7 @@ function defineSendTextActionClass() {
   Chat.sendTextActionClass.defineDefaultAction();
 }
 
-/*----------------- CLIENT ACTION CLASSES*/
-
+/*----------------- CLIENT ACTION CLASSES -------------------------------*/
 function prepareClientActionClass() {
   /**
    * Each method of below object will handle different client action (event from server)
@@ -101,17 +99,22 @@ function prepareClientActionClass() {
   Chat.dataController.registerClientActionClass("ChatClientAction", chatClientActionClass);
 }
 
-/* ---------------- GUI*/
-
+/* ---------------- GUI --------------------- */
 function addGUIListeners() {
   $("#loginButton").click(function () {
-    Chat.username = $("#login").val();
-    Chat.client.connect();
+    Chat.username = $("#login").val();  //Chat.username field is used in onOpen function
+    Chat.client.connect(); //open web socket connection, onOpen function will be invoket as result
   });
 
   $("#sendMessageButton").click(function(){
-    var text = $("#speakChannel").val();
-    sendTextMessageToServer(text);
+    var inputFiled = $("#speakChannel");
+    var text = inputFiled.val(); //get message value
+    /**
+     * invoke action on server
+     * Bristleback.CONNECTOR is alias of current user (will be bound to ChatUser instance)
+     */
+    Chat.sendTextActionClass.executeDefault(Bristleback.CONNECTOR, {'text': text});
+    inputFiled.val(""); //clear input field
   })
 }
 
@@ -121,10 +124,6 @@ function addMessage(boldText, normalText) {
   scrollDownChat();
 }
 
-function sendTextMessageToServer(text) {
-  Chat.sendTextActionClass.executeDefault(Bristleback.CONNECTOR, {'text': text});
-}
-
 
 function actualUsersList(users) {
   var usersList = $(".users");
@@ -132,7 +131,6 @@ function actualUsersList(users) {
   for (var user in users) {
     var backgroundClass = user % 2 == 0 ? "evenUser" : "oddUser";
     usersList.append("<li class='" + backgroundClass + "'>" + Bristleback.utils.escapeHTML(users[user].nickname) + "<div class=\"instantMsg\" id=\"" + users[user].id + "\"></div></li>")
-
   }
 }
 

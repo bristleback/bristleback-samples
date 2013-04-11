@@ -7,3 +7,11 @@ target/*
 sample-chat/target/*
 scrumtable/target/*
 tutorial-chat/target/*
+
+# eclipse project files #
+#########################
+.project
+.settings
+.classpath
+.springBeans
+.externalToolBuilders
