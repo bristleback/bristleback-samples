@@ -15,6 +15,7 @@
   <bb:serverMessages/>
 
   <bean id="pojoConfigResolver" class="pl.bristleback.server.bristle.conf.resolver.init.PojoConfigResolver">
+    <property name="enginePort" value="8080"/>
   </bean>
 
   <bb:standaloneServer configurationResolver="pojoConfigResolver"/>
