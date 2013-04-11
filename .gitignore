@@ -4,3 +4,6 @@
 *.ipr
 *.iws
 target/*
+sample-chat/target/*
+scrumtable/target/*
+tutorial-chat/target/*
