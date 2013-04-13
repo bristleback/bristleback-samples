@@ -1,6 +1,6 @@
 var config = {
-  serverUrl: "ws://samples.bristleback.pl/scrumtable/websocket",
-//  serverUrl: "ws://localhost:8080/websocket",
+//  serverUrl: "ws://samples.bristleback.pl/scrumtable/websocket",
+  serverUrl: "ws://localhost:8080/websocket",
 
   OnOpen: function (event) {
     switchToConnectedScreen();
@@ -21,6 +21,7 @@ widgetActionClass.defineAction("moveWidget");
 widgetActionClass.defineAction("lockWidget");
 widgetActionClass.defineAction("unlockWidget");
 widgetActionClass.defineAction("editWidget");
+widgetActionClass.defineAction("resizeWidget");
 widgetActionClass.defineAction("clearWidgets");
 widgetActionClass.defineAction("userLogged");
 
@@ -206,7 +207,7 @@ function addResizeAndDragSupport(elementSelector) {
 }
 
 function appendNewNote(id) {
-  var newNote = "<div style='top: 105px; left 15px;' id=\"" + id + "\" class=\"note draggable ui-widget-content\">\n  <div class=\"ui-widget-header switcher\">\n    <div class=\"title-label\" id=\"" + id + "-title-value\">New</div>\n    <div id=\"" + id + "-title-input\" class=\"hidden\">\n      <input class=\"input-title\" type=\"text\" value=\"New\"/>\n    </div>\n  </div>\n  <div class=\"switcher\">\n    <div class='description-value' id=\"" + id + "-description-value\">Description</div>\n    <div id=\"" + id + "-description-input\" class=\"hidden\">\n      <input class=\"input-description\" type=\"text\" value=\"Description\"/>\n    </div>\n  </div>\n  <div class=\"noteLabel\">Owner:</div>\n  <div class=\"switcher\">\n    <div id=\"" + id + "-owner-value\">Owner</div>\n    <div id=\"" + id + "-owner-input\" class=\"hidden\">\n      <input class=\"input-owner\" type=\"text\" value=\"Owner\"/>\n    </div>\n  </div>\n  <div class=\"noteLabel\">Time:</div>\n  <div class=\"switcher\">\n    <div id=\"" + id + "-time-value\">5h</div>\n    <div id=\"" + id + "-time-input\" class=\"hidden\">\n      <input class=\"input-time\" type=\"text\" value=\"5h\"/>\n    </div>\n  </div>\n  <ul id=\"icons\" style=\"float: right;\">\n        <li class=\"ui-state-default ui-corner-all edit-button\"><span class=\"ui-icon ui-icon-refresh\"></span></li>\n        <li class=\"ui-state-default ui-corner-all save-button\"><span class=\"ui-icon ui-icon-refresh\"></span></li>\n  </ul>\n</div>\n";
+  var newNote = "<div id=\"" + id + "\" class=\"note draggable ui-widget-content\">\n  <div class=\"ui-widget-header switcher\">\n    <div class=\"title-label\" id=\"" + id + "-title-value\">New</div>\n    <div id=\"" + id + "-title-input\" class=\"hidden\">\n      <input class=\"input-title\" type=\"text\" value=\"New\"/>\n    </div>\n  </div>\n  <div class=\"switcher\">\n    <div class='description-value' id=\"" + id + "-description-value\">Description</div>\n    <div id=\"" + id + "-description-input\" class=\"hidden\">\n      <input class=\"input-description\" type=\"text\" value=\"Description\"/>\n    </div>\n  </div>\n  <div class=\"noteLabel\">Owner:</div>\n  <div class=\"switcher\">\n    <div id=\"" + id + "-owner-value\">Owner</div>\n    <div id=\"" + id + "-owner-input\" class=\"hidden\">\n      <input class=\"input-owner\" type=\"text\" value=\"Owner\"/>\n    </div>\n  </div>\n  <div class=\"noteLabel\">Time:</div>\n  <div class=\"switcher\">\n    <div id=\"" + id + "-time-value\">5h</div>\n    <div id=\"" + id + "-time-input\" class=\"hidden\">\n      <input class=\"input-time\" type=\"text\" value=\"5h\"/>\n    </div>\n  </div>\n  <ul id=\"icons\" style=\"float: right;\">\n        <li class=\"ui-state-default ui-corner-all edit-button\"><span class=\"ui-icon ui-icon-refresh\"></span></li>\n        <li class=\"ui-state-default ui-corner-all save-button\"><span class=\"ui-icon ui-icon-refresh\"></span></li>\n  </ul>\n</div>\n";
   $("#outer").append(newNote);
   addEditNoteListeners(id);
 }

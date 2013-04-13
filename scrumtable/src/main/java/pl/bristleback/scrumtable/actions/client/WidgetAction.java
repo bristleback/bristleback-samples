@@ -41,7 +41,6 @@ public class WidgetAction {
   }
 
   @Action
-  @PreAuthorize("hasRole('supervisor') or hasRole('teller')" )
   public void resizeWidget(Widget widget) {
     widgetService.resizeWidget(widget);
   }
