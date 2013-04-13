@@ -61,12 +61,12 @@
 }
 
 .fancyButton {
-  margin-top: 5px;
-  padding: 3px;
-  cursor: pointer;
-  background: #8CC858;
-  text-align: center;
-  border: solid 1px black;
+  /*margin-top: 5px;*/
+  /*padding: 3px;*/
+  /*cursor: pointer;*/
+  /*background: #8CC858;*/
+  /*text-align: center;*/
+  /*border: solid 1px black;*/
   float: left;
 }
 
@@ -80,7 +80,7 @@
 }
 
 .fancyButtonMediumSize {
-  width: 220px;;
+  /*width: 220px;;*/
 }
 
 .bold {
