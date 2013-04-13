@@ -46,20 +46,23 @@ var widgetClientActionClass = {
       addResizeAndDragSupport("#" + widget.id);
       setWidgetValues(widget);
       if (widget.locked == true) {
-        $("#" + widget.id).resizable("option", "disabled", true);
-        $("#" + widget.id).draggable("option", "disabled", true);
+        var widgetElement = $("#" + widget.id);
+        widgetElement.resizable("option", "disabled", true);
+        widgetElement.draggable("option", "disabled", true);
       }
     }
   },
   lockWidget: function (widget) {
-    $("#" + widget.id).resizable("option", "disabled", true);
-    $("#" + widget.id).draggable("option", "disabled", true);
-    $("#" + widget.id).addClass("widgetLocked");
+    var widgetElement = $("#" + widget.id);
+    widgetElement.resizable("option", "disabled", true);
+    widgetElement.draggable("option", "disabled", true);
+    widgetElement.addClass("widgetLocked");
   },
   unlockWidget: function (widget) {
-    $("#" + widget.id).resizable("option", "disabled", false);
-    $("#" + widget.id).draggable("option", "disabled", false);
-    $("#" + widget.id).removeClass("widgetLocked");
+    var widgetElement = $("#" + widget.id);
+    widgetElement.resizable("option", "disabled", false);
+    widgetElement.draggable("option", "disabled", false);
+    widgetElement.removeClass("widgetLocked");
   },
   resizeWidget: function (widget) {
     setWidthHeightPosition(widget);
@@ -126,18 +129,20 @@ function requestEditWidget(widget) {
 function addEditNoteListeners(id) {
   var currentId = id;
   $("#" + id + " .edit-button").click(function (e) {
-    if (!$("#" + currentId).hasClass("widgetLocked")) {
-      $("#" + currentId).find(".switcher div").toggle();
+    var widget = $("#" + currentId);
+    if (!widget.hasClass("widgetLocked")) {
+      widget.find(".switcher div").toggle();
       $(this).hide();
       $(this).next().show();
       requestLockWidget(currentId);
-      $("#" + currentId).addClass("edit-mode");
+      widget.addClass("edit-mode");
     }
   });
 
   $("#" + id + " .save-button").click(function (e) {
-    $("#" + currentId).find(".switcher div").toggle();
-    $("#" + currentId).removeClass("edit-mode");
+    var widget = $("#" + currentId);
+    widget.find(".switcher div").toggle();
+    widget.removeClass("edit-mode");
 
     var titleInput = $(this).parent().parent().find(".input-title");
     var titleValue = titleInput.val();
@@ -198,12 +203,10 @@ function addResizeAndDragSupport(elementSelector) {
       //do nothing for now
     }
   });
-
-  $(elementSelector).css("position", "absolute");
 }
 
 function appendNewNote(id) {
-  var newNote = "<div id=\"" + id + "\" class=\"note draggable ui-widget-content\">\n  <div class=\"ui-widget-header switcher\">\n    <div class=\"title-label\" id=\"" + id + "-title-value\">New</div>\n    <div id=\"" + id + "-title-input\" class=\"hidden\">\n      <input class=\"input-title\" type=\"text\" value=\"New\"/>\n    </div>\n  </div>\n  <div class=\"switcher\">\n    <div class='description-value' id=\"" + id + "-description-value\">Description</div>\n    <div id=\"" + id + "-description-input\" class=\"hidden\">\n      <input class=\"input-description\" type=\"text\" value=\"Description\"/>\n    </div>\n  </div>\n  <div class=\"noteLabel\">Owner:</div>\n  <div class=\"switcher\">\n    <div id=\"" + id + "-owner-value\">Owner</div>\n    <div id=\"" + id + "-owner-input\" class=\"hidden\">\n      <input class=\"input-owner\" type=\"text\" value=\"Owner\"/>\n    </div>\n  </div>\n  <div class=\"noteLabel\">Time:</div>\n  <div class=\"switcher\">\n    <div id=\"" + id + "-time-value\">5h</div>\n    <div id=\"" + id + "-time-input\" class=\"hidden\">\n      <input class=\"input-time\" type=\"text\" value=\"5h\"/>\n    </div>\n  </div>\n  <ul id=\"icons\" style=\"float: right;\">\n        <li class=\"ui-state-default ui-corner-all edit-button\"><span class=\"ui-icon ui-icon-refresh\"></span></li>\n        <li class=\"ui-state-default ui-corner-all save-button\"><span class=\"ui-icon ui-icon-refresh\"></span></li>\n  </ul>\n</div>\n";
+  var newNote = "<div style='top: 105px; left 15px;' id=\"" + id + "\" class=\"note draggable ui-widget-content\">\n  <div class=\"ui-widget-header switcher\">\n    <div class=\"title-label\" id=\"" + id + "-title-value\">New</div>\n    <div id=\"" + id + "-title-input\" class=\"hidden\">\n      <input class=\"input-title\" type=\"text\" value=\"New\"/>\n    </div>\n  </div>\n  <div class=\"switcher\">\n    <div class='description-value' id=\"" + id + "-description-value\">Description</div>\n    <div id=\"" + id + "-description-input\" class=\"hidden\">\n      <input class=\"input-description\" type=\"text\" value=\"Description\"/>\n    </div>\n  </div>\n  <div class=\"noteLabel\">Owner:</div>\n  <div class=\"switcher\">\n    <div id=\"" + id + "-owner-value\">Owner</div>\n    <div id=\"" + id + "-owner-input\" class=\"hidden\">\n      <input class=\"input-owner\" type=\"text\" value=\"Owner\"/>\n    </div>\n  </div>\n  <div class=\"noteLabel\">Time:</div>\n  <div class=\"switcher\">\n    <div id=\"" + id + "-time-value\">5h</div>\n    <div id=\"" + id + "-time-input\" class=\"hidden\">\n      <input class=\"input-time\" type=\"text\" value=\"5h\"/>\n    </div>\n  </div>\n  <ul id=\"icons\" style=\"float: right;\">\n        <li class=\"ui-state-default ui-corner-all edit-button\"><span class=\"ui-icon ui-icon-refresh\"></span></li>\n        <li class=\"ui-state-default ui-corner-all save-button\"><span class=\"ui-icon ui-icon-refresh\"></span></li>\n  </ul>\n</div>\n";
   $("#outer").append(newNote);
   addEditNoteListeners(id);
 }
@@ -225,14 +228,16 @@ function setWidgetValues(widget) {
 function setLeftTopPosition(params) {
   var leftPos = parseInt(params.position.left);
   var topPos = parseInt(params.position.top);
-  $("#" + params.id).css("left", leftPos);
-  $("#" + params.id).css("top", topPos);
+  var widgetElement = $("#" + params.id);
+  widgetElement.css("left", leftPos);
+  widgetElement.css("top", topPos);
 }
 function setWidthHeightPosition(params) {
   var height = params.position.height;
   var width = params.position.width;
-  $("#" + params.id).css("height", height);
-  $("#" + params.id).css("width", width);
+  var widgetElement = $("#" + params.id);
+  widgetElement.css("height", height);
+  widgetElement.css("width", width);
 }
 
 
@@ -274,6 +279,5 @@ $(document).ready(function () {
   });
 
   createJqueryButtons();
-
 });
 

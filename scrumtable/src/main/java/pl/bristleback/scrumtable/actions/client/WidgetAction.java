@@ -30,7 +30,7 @@ public class WidgetAction {
   public void addWidget() {
     String newId = RandomStringUtils.randomAlphabetic(15);
     Position position = Position.defaultPosition();
-    Widget widget = new Widget(newId);
+    Widget widget = Widget.defaultWidget(newId);
     widget.setPosition(position);
     widgetService.addWidget(widget);
   }
