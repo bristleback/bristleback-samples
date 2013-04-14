@@ -38,7 +38,9 @@ function defineJoinChatActionClass() {
     var messages = $("#messages");
     scrollDownChat();
     $("#speakChannel").focus();
-    actualUsersList(users)
+    actualUsersList(users);
+
+    $("#subheader").hide();
   }
 
   function validationErrorCallback() {
