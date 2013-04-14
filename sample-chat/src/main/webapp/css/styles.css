@@ -88,9 +88,9 @@ footer {
 }
 
 #subheader {
-  color: #cccccc;
+  color: #222;
   height: 20px;
-  margin-top: -20px;
+  margin-top: 30px;
   font-weight: bold;
   font-family: arial, serif;
   width: 95%;
@@ -296,5 +296,10 @@ and (max-width : 649px) {
   #sourcesDiv {
     display: none;
   }
+
+  #subheader {
+    display: none;
+  }
+
 }
 
