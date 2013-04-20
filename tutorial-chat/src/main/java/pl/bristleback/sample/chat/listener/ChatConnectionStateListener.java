@@ -6,6 +6,7 @@ import pl.bristleback.sample.chat.action.client.ChatClientAction;
 import pl.bristleback.sample.chat.user.ActiveUsers;
 import pl.bristleback.sample.chat.user.ChatUser;
 import pl.bristleback.server.bristle.api.ConnectionStateListener;
+import pl.bristleback.server.bristle.listener.ConnectionStateListenerChain;
 
 @Component
 public class ChatConnectionStateListener implements ConnectionStateListener<ChatUser> {
@@ -16,12 +17,13 @@ public class ChatConnectionStateListener implements ConnectionStateListener<Chat
   @Autowired
   private ActiveUsers activeUsers;
 
+
   @Override
-  public void userConnected(ChatUser user) {
+  public void userConnected(ChatUser userContext, ConnectionStateListenerChain connectionStateListenerChain) {
   }
 
   @Override
-  public void userDisconnected(ChatUser user) {
+  public void userDisconnected(ChatUser user, ConnectionStateListenerChain connectionStateListenerChain) {
     if (user.isLogged()) {
       activeUsers.removeUser(user.getNickname());
       chatClientAction.userLeftChat(user.getNickname(), activeUsers.getUsers());

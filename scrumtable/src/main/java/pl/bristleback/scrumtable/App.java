@@ -17,7 +17,6 @@ import java.util.Scanner;
  * @author Paweł Machowski
  */
 public class App {
-  private static Logger log = Logger.getLogger(App.class.getName());
 
   private App() {
     throw new UnsupportedOperationException();
