@@ -1,32 +1,36 @@
-    package pl.bristleback.sample.chat.user;
+package pl.bristleback.sample.chat.user;
 
-    import pl.bristleback.server.bristle.api.users.IdentifiedUser;
+import pl.bristleback.server.bristle.api.users.IdentifiedUser;
 
-    import java.util.UUID;
+import java.util.UUID;
 
-    public class ChatUser implements IdentifiedUser {
+public class ChatUser implements IdentifiedUser {
 
-      private String id;
-      private String nickname;
+  private String id;
+  private String nickname;
 
-      public ChatUser() {
-        this.id = UUID.randomUUID().toString();
-      }
+  public ChatUser() {
+    this.id = UUID.randomUUID().toString();
+  }
 
-      @Override
-      public String getId() {
-        return id;
-      }
+  @Override
+  public String getId() {
+    return id;
+  }
 
-      public String getNickname() {
-        return nickname;
-      }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-      public void setNickname(String nickname) {
-        this.nickname = nickname;
-      }
+  public String getNickname() {
+    return nickname;
+  }
 
-      public boolean isLogged() {
-        return nickname != null; //just a simple implementation
-      }
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
+  }
+
+  public boolean isLogged() {
+    return nickname != null; //just a simple implementation
+  }
 }

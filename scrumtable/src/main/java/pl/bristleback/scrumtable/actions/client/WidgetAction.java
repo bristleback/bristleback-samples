@@ -30,7 +30,7 @@ public class WidgetAction {
   public void addWidget() {
     String newId = RandomStringUtils.randomAlphabetic(15);
     Position position = Position.defaultPosition();
-    Widget widget = new Widget(newId);
+    Widget widget = Widget.defaultWidget(newId);
     widget.setPosition(position);
     widgetService.addWidget(widget);
   }
@@ -41,7 +41,6 @@ public class WidgetAction {
   }
 
   @Action
-  @PreAuthorize("hasRole('supervisor') or hasRole('teller')" )
   public void resizeWidget(Widget widget) {
     widgetService.resizeWidget(widget);
   }

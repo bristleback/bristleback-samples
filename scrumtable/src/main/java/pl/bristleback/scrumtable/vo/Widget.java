@@ -24,6 +24,15 @@ public class Widget implements Comparable<Widget>{
   public Widget() {
   }
 
+  public static Widget defaultWidget(String id){
+    Widget newWidget = new Widget(id);
+    newWidget.setTitle("New");
+    newWidget.setDescription("Description");
+    newWidget.setOwner("Paul");
+    newWidget.setTime("5h");
+    return newWidget;
+  }
+
   public Widget(String id) {
     this.id = id;
   }

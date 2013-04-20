@@ -53,7 +53,7 @@ public class Position {
     Position position = new Position();
     position.setHeight(185);
     position.setWidth(165);
-    position.setTop(125);
+    position.setTop(80);
     position.setLeft(60);
     return position;
   }
