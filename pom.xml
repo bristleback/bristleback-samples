@@ -17,6 +17,7 @@
   </modules>
   <properties>
     <bristleback.version>0.3.0</bristleback.version>
+    <org.springframework.version>3.1.1.RELEASE</org.springframework.version>
   </properties>
 
   <build>
@@ -50,6 +51,11 @@
       <groupId>pl.bristleback</groupId>
       <artifactId>websocket-engine-tomcat</artifactId>
       <version>${bristleback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${org.springframework.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
