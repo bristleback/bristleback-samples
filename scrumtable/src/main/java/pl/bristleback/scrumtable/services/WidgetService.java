@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import pl.bristleback.scrumtable.actions.client.WidgetClientAction;
 import pl.bristleback.scrumtable.vo.Position;
 import pl.bristleback.scrumtable.vo.Widget;
-import pl.bristleback.server.bristle.api.users.IdentifiedUser;
+import pl.bristleback.server.bristle.engine.user.BaseUserContext;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -33,7 +33,7 @@ public class WidgetService {
     return widgets;
   }
 
-  public void sendAllWidgets(IdentifiedUser user) {
+  public void sendAllWidgets(BaseUserContext user) {
     widgetClientAction.widgetsList(getAllWidgets(), user);
   }
 

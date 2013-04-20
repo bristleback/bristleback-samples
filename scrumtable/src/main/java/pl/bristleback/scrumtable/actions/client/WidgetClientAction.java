@@ -6,8 +6,8 @@ import pl.bristleback.server.bristle.api.action.SendCondition;
 import pl.bristleback.server.bristle.api.annotations.ClientAction;
 import pl.bristleback.server.bristle.api.annotations.ClientActionClass;
 import pl.bristleback.server.bristle.api.annotations.Ignore;
-import pl.bristleback.server.bristle.api.users.IdentifiedUser;
-import pl.bristleback.server.bristle.authorisation.conditions.AllUsersCondition;
+import pl.bristleback.server.bristle.engine.user.BaseUserContext;
+import pl.bristleback.server.bristle.security.authorisation.conditions.AllUsersCondition;
 
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class WidgetClientAction {
   }
 
   @ClientAction
-  public IdentifiedUser widgetsList(List<Widget> allWidgets, @Ignore IdentifiedUser user) {
+  public BaseUserContext widgetsList(List<Widget> allWidgets, @Ignore BaseUserContext user) {
     return user;
   }
 

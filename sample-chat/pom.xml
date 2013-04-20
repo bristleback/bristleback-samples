@@ -11,9 +11,11 @@
 
   <artifactId>sample-chat</artifactId>
   <version>1.0-SNAPSHOT</version>
+
   <packaging>war</packaging>
   <name>sample-chat Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
   <build>
     <finalName>sample-chat</finalName>
     <pluginManagement>
@@ -35,6 +37,4 @@
       </plugins>
     </pluginManagement>
   </build>
-  <dependencies>
-  </dependencies>
 </project>

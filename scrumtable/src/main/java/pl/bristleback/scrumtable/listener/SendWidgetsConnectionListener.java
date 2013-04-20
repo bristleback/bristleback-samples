@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 import pl.bristleback.scrumtable.actions.client.WidgetClientAction;
 import pl.bristleback.scrumtable.services.WidgetService;
 import pl.bristleback.server.bristle.api.ConnectionStateListener;
-import pl.bristleback.server.bristle.api.users.IdentifiedUser;
+import pl.bristleback.server.bristle.api.users.UserContext;
+import pl.bristleback.server.bristle.listener.ConnectionStateListenerChain;
 
 @Component
 public class SendWidgetsConnectionListener implements ConnectionStateListener {
@@ -17,11 +18,10 @@ public class SendWidgetsConnectionListener implements ConnectionStateListener {
   private WidgetService widgetService;
 
   @Override
-  public void userConnected(IdentifiedUser scrumTableUser) {
-//    widgetClientAction.widgetsList(widgetService.getAllWidgets(), scrumTableUser);
+  public void userConnected(UserContext userContext, ConnectionStateListenerChain connectionStateListenerChain) {
   }
 
   @Override
-  public void userDisconnected(IdentifiedUser identifiedUser) {
+  public void userDisconnected(UserContext userContext, ConnectionStateListenerChain connectionStateListenerChain) {
   }
 }
