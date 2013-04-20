@@ -1,6 +1,6 @@
 var config = {
-  serverUrl: "ws://samples.bristleback.pl/scrumtable/websocket",
-//  serverUrl: "ws://localhost:8080/websocket",
+//  serverUrl: "ws://samples.bristleback.pl/scrumtable/websocket",
+  serverUrl: (document.location.hostname == "samples.bristleback.pl") ? "ws://samples.bristleback.pl/scrumtable/websocket" : "ws://localhost:8080/websocket",
 
   OnOpen: function (event) {
     switchToConnectedScreen();

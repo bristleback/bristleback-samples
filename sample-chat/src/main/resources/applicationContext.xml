@@ -18,7 +18,6 @@
 
   <bean id="initPojoConfigResolver" class="pl.bristleback.server.bristle.conf.resolver.init.PojoConfigResolver">
     <!--<property name="serializationEngine" value="system.jacksonSerializer"/>-->
-    <property name="userFactory" value="chatUserFactory"/>
     <property name="enginePort" value="8080"/>
   </bean>
 

@@ -23,8 +23,6 @@ public class App {
     throw new UnsupportedOperationException();
   }
 
-  private static final char STOP_CHAR = 'x';
-
   private static final String[] CONFIG_FILES =
     {"applicationContext.xml"};
 
