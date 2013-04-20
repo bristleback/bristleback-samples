@@ -7,12 +7,19 @@
         content="Java WebSocket Framework powered by Spring Framework. Fast and focused on business logic instead of low level WebSocket protocol details">
   <meta name="keywords"
         content="Websocket, Websockets, Java, JavaScript, Bristleback Framework, Bristleback server, Spring">
-  <title>Java Websocket Framework - Bristleback</title>
+  <title>Bristleback Websocket Framework Showcase</title>
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
+  <link rel="stylesheet" type="text/css" href="../css/tabStyles.css">
   <link rel="stylesheet" type="text/css" href="../css/highlighting.css">
 
+  <script type="text/javascript" src="../js/jquery-2.0.0.min.js"></script>
+  <script type="text/javascript" src="../js/jquery-ui.js"></script>
+  <script type="text/javascript" src="../js/bristleback-0.3.0.js"></script>
+  <script type="text/javascript" src="../js/bristleback-showcase.js"></script>
   <script type="text/javascript">
-
+    $(function () {
+      $("#tabs").tabs();
+    });
   </script>
 
 </head>
@@ -47,15 +54,138 @@
   <div id="main">
     <div id="content">
       <div id="menuOuter">
-        <h5>
-          Menu
+        <h5 class="menuHeader">
+          Configuration how to...
         </h5>
-        <ul>
+        <ol class="menuList">
+          <li>
+            Create new web application using Maven Archetype
+          </li>
+          <li>
+            Change Websocket engine
+          </li>
+          <li>
+            Change configuration
+          </li>
+          <li>
+            Use Property file configuration
+          </li>
+          <li>
+            Change Http Handler Mappings
+          </li>
+        </ol>
 
-        </ul>
+        <h5 class="menuHeader">
+          Code How to...
+        </h5>
+        <ol class="menuList" start="6">
+          <li>
+            Define and call action classes
+          </li>
+          <li>
+            Define action without response
+          </li>
+          <li>
+            Set action parameter as required
+          </li>
+          <li>
+            Skip field serialization/deserialization
+          </li>
+          <li>
+            Send server message using condition object sender
+          </li>
+          <li>
+            Send server message using client action classes
+          </li>
+          <li>
+            Use formatting in object serialization and deserialization
+          </li>
+          <li>
+            Register custom user context
+          </li>
+          <li>
+            Register custom user context factory
+          </li>
+          <li>
+            Close connection
+          </li>
+          <li>
+            Define user connection listener
+          </li>
+          <li>
+            Define custom exception handler
+          </li>
+          <li>
+            Define action interceptor
+          </li>
+          <li>
+            Use JavaScript templates
+          </li>
+          <li>
+            Create simple authentication system
+          </li>
+          <li>
+            Perform authorization on action invoking
+          </li>
+        </ol>
+
       </div>
       <div id=contentInner>
-        {{ content }}
+        <div id="tabs">
+          <ul>
+            <li><a href="#tabs-1">Example</a></li>
+            <li><a href="#tabs-2">Server side</a></li>
+            <li><a href="#tabs-3">Client side</a></li>
+          </ul>
+          <div id="tabs-1">
+            <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec
+              sollicitudin mi sit
+              amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus
+              auctor risus.
+              Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam
+              sodales
+              tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin.
+              Sed ut
+              dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+          </div>
+          <div id="tabs-2">
+            <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id
+              nunc. Duis
+              scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut
+              tempus
+              eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam.
+              Praesent in
+              eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel
+              metus. Ut
+              posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+              pellentesque
+              pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et
+              purus.</p>
+          </div>
+          <div id="tabs-3">
+            <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula
+              accumsan,
+              mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu
+              ad litora
+              torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo
+              pellentesque.
+              Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus
+              a,
+              lacus.</p>
+
+            <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla
+              facilisi.
+              Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis,
+              pede vel
+              pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non
+              libero
+              sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae,
+              pede. Aenean
+              vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus
+              a
+              libero vitae lectus hendrerit hendrerit.</p>
+          </div>
+        </div>
       </div>
 
 

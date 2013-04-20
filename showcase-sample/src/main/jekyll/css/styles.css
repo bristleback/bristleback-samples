@@ -81,12 +81,12 @@ header {
 }
 
 #content {
-  padding-top: 20px;
-  max-width: 1050px;
   min-height: 500px;
   margin: auto;
   font-family: arial, serif;
   font-size: 17px;
+  border-left: 1px #999999 solid;
+  border-right: 1px #999999 solid;
 }
 
 .classicHorizontalLine {
@@ -111,6 +111,40 @@ footer {
   font-size: 12px;
 }
 
+/* --------------- MENU--------------- */
+
+#menuOuter {
+  float: left;
+  width: 260px;
+  border-right: 1px #999999 solid;
+  border-bottom: 1px #999999 solid;
+  height: 100%;
+}
+
+.menuHeader {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #999999;
+}
+
+.menuList {
+  font-size: 0.7em;
+  padding-left: 25px;
+  padding-right: 5px;
+}
+
+.menuList li {
+  padding-bottom: 6px;
+}
+
+#contentInner {
+  margin-left:265px;
+}
+
+
 @media only screen
 and (min-width : 650px) {
   #headerDiv {
@@ -120,16 +154,16 @@ and (min-width : 650px) {
   }
 
   #logoDiv {
-      width: 50%;
-      float: left;
-    }
+    width: 50%;
+    float: left;
+  }
 
-    #logoDiv img {
-      margin-top: 8px;
-      max-height: 80px;
-      margin-left: 10px;
-      margin-right: auto;
-    }
+  #logoDiv img {
+    margin-top: 8px;
+    max-height: 80px;
+    margin-left: 10px;
+    margin-right: auto;
+  }
 
   #rightHeaderDiv {
     width: 250px;
