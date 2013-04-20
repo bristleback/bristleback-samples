@@ -10,57 +10,216 @@ layout: default
       <li><a href="#tabs-3">Client side</a></li>
     </ul>
     <div id="tabs-1">
-      <h5>Creating new web application using Maven Archetype</h5>
+      <h4>Creating new web application using Maven Archetype</h4>
 
       <p>
         Archetype for web application with Bristleback Framework is available in public Maven repository.
         To create new web application, perform following steps:
       </p>
-      <ol>
+      <ol class="standardList">
         <li>Go to directory where your new Bristleback Project will be created and type:
           <code class="overflowCodeSnippet">
             mvn archetype:generate -DarchetypeCatalog=http://bristleback.pl/archetype/archetype-catalog.xml
             -DarchetypeGroupId=pl.bristleback -DarchetypeArtifactId=webapp-archetype -DarchetypeVersion=0.2.1
           </code>
         </li>
+        <li>
+          Enter additional information about the project.
+        </li>
+        <li>
+          Go to newly created project directory and type mvn jetty:run - your first Bristleback Framework with Jetty as Server Engine is starting!
+        </li>
+        <li>
+          Open your browser and type localhost:8080
+        </li>
+        <li>
+          Have fun developing!
+        </li>
       </ol>
+
+      <p>
+
+      </p>
     </div>
     <div id="tabs-2">
-      <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id
-        nunc. Duis
-        scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut
-        tempus
-        eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam.
-        Praesent in
-        eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel
-        metus. Ut
-        posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
-        pellentesque
-        pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et
-        purus.</p>
+      <p>HelloWorldAction.java:</p>
+
+      <div class="codeblock">
+      {% highlight java %}
+package com.sampleproject.action;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import pl.bristleback.server.bristle.api.action.DefaultAction;
+import pl.bristleback.server.bristle.api.annotations.Action;
+import pl.bristleback.server.bristle.api.annotations.ActionClass;
+import pl.bristleback.server.bristle.engine.user.BaseUserContext;
+import pl.bristleback.server.bristle.serialization.system.annotation.Bind;
+
+@ActionClass(name = "HelloWorld")
+@Controller
+public class HelloWorldAction implements DefaultAction<BaseUserContext, String> {
+
+  @Autowired
+  private SampleClientAction sampleClientAction;
+
+  @Action
+  public String executeDefault(BaseUserContext defaultUser, @Bind(required = true) String text) {
+    return new StringBuilder(text).reverse().toString();
+  }
+
+  @Action
+  public String duplicateText(@Bind(required = true) String text) {
+    return text + text;
+  }
+
+  @Action
+  public void sayHelloToAll() {
+    sampleClientAction.sayHello("Hello everyone!");
+  }
+}
+      {% endhighlight %}
+      </div>
+
+      <p>SampleClientAction.java:</p>
+
+      <div class="codeblock">
+        {% highlight java %}
+package com.sampleproject.action;
+
+import org.springframework.stereotype.Component;
+import pl.bristleback.server.bristle.api.action.SendCondition;
+import pl.bristleback.server.bristle.api.annotations.ClientAction;
+import pl.bristleback.server.bristle.api.annotations.ClientActionClass;
+import pl.bristleback.server.bristle.security.authorisation.conditions.AllUsersCondition;
+
+@ClientActionClass
+@Component
+public class SampleClientAction {
+
+  @ClientAction
+  public SendCondition sayHello(String helloWorld) {
+    return AllUsersCondition.getInstance();
+  }
+}
+        {% endhighlight %}
+      </div>
     </div>
     <div id="tabs-3">
-      <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula
-        accumsan,
-        mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu
-        ad litora
-        torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo
-        pellentesque.
-        Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus
-        a,
-        lacus.</p>
+      <p>SampleClientAction.java:</p>
 
-      <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla
-        facilisi.
-        Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis,
-        pede vel
-        pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non
-        libero
-        sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae,
-        pede. Aenean
-        vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus
-        a
-        libero vitae lectus hendrerit hendrerit.</p>
+      <div class="codeblock">
+        {% highlight html %}
+<html>
+<head>
+  <script type="text/javascript" src="js/bristleback-0.3.0.js"><!--//--></script>
+
+  <script type="text/javascript">
+    var config = {
+      serverUrl: "ws://localhost:8080/websocket",
+      OnOpen: function(event) {
+        document.getElementById('status').innerHTML = "The WebSocket Connection Is Open.";
+      },
+      OnClose: function(event) {
+        document.getElementById('status').innerHTML = "The WebSocket Connection Is Closed.";
+      }
+    };
+    var client = Bristleback.newClient(config);
+    var dataController = client.dataController;
+
+    var sampleClientAction = {
+      sayHello: function(helloText) {
+        alert(helloText);
+      }
+    };
+
+    function connect() {
+      client.connect();
+      Bristleback.Console.enableConsole();
+    }
+
+    function closeConnection() {
+      client.disconnect("exit on demand");
+    }
+
+    /* ---------- CLIENT ACTIONS ---------- */
+
+    dataController.registerClientActionClass("SampleClientAction", sampleClientAction);
+
+    /* ---------- SERVER ACTIONS ---------- */
+
+    var helloWorld = dataController.getActionClass("HelloWorld");
+
+    helloWorld.defineDefaultAction()
+      .setResponseHandler(reverseCallback)
+      .exceptionHandler.setExceptionHandler("SerializationException", emptyInputCallback);
+
+    helloWorld.defineAction("duplicateText")
+      .setResponseHandler(duplicateCallback)
+      .exceptionHandler.setExceptionHandler("SerializationException", emptyInputCallback);
+
+    helloWorld.defineAction("sayHelloToAll");
+
+    function reverse() {
+      var text = document.getElementById("textInput").value;
+      helloWorld.executeDefault(Bristleback.CONNECTOR, text);
+    }
+
+    function reverseCallback(reversedValue) {
+      document.getElementById('status').innerHTML = "Reversed value: " + reversedValue;
+    }
+
+    function duplicate() {
+      var text = document.getElementById("textInput").value;
+      helloWorld.duplicateText(text);
+    }
+
+    function sayHelloToAll() {
+      helloWorld.sayHelloToAll();
+    }
+
+    function duplicateCallback(duplicatedValue) {
+      document.getElementById('status').innerHTML = "Duplicated value: " + duplicatedValue;
+    }
+
+    function emptyInputCallback() {
+      document.getElementById('status').innerHTML = "This is an exception callback for SerializationException!";
+    }
+
+
+  </script>
+
+  <style type="text/css">
+    * {
+      font-size: 14px;
+      font-family: arial, sans-serif;
+    }
+
+    div {
+      padding-bottom: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+<div id="status">Disconnected. Click connect button to start playing.</div>
+<div>
+  <input type="button" onclick="connect()" value="Connect">
+  <input type="button" onclick="closeConnection()" value="Close connection">
+</div>
+
+<div>
+  <input type="text" name="textInput" id="textInput"/>
+  <input type="button" onclick="reverse()" value="Reverse text!"/>
+  <input type="button" onclick="duplicate()" value="Duplicate text!"/>
+  <input type="button" onclick="sayHelloToAll()" value="Say Hello to all"/>
+</div>
+
+</body>
+</html>
+      {% endhighlight %}
+
     </div>
   </div>
 </div>

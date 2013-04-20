@@ -43,10 +43,15 @@ header {
   overflow-x: auto;
   display: block;
   white-space: nowrap;
-  width: 100%;
+  width: 90%;
   padding: 10px;
   color: #6aa84f;
   background-color: #222222;
+  margin-top: 10px;
+}
+
+.standardList li{
+  padding-top: 10px;
 }
 
 .biggerSpaceholder {
@@ -142,6 +147,7 @@ footer {
 
 #contentInner {
   margin-left:265px;
+  font-size: 0.8em;
 }
 
 
