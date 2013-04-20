@@ -18,8 +18,8 @@
   <bb:serverMessages/>
 
   <bean id="initPojoConfigResolver" class="pl.bristleback.server.bristle.conf.resolver.init.PojoConfigResolver">
-    <property name="userFactory" value="chatUserFactory"/>
     <property name="engineName" value="system.engine.tomcat.servlet"/>
+    <property name="userContextClass" value="pl.bristleback.sample.chat.user.ChatUser"/>
   </bean>
 
   <bb:servlet configurationResolver="initPojoConfigResolver"/>

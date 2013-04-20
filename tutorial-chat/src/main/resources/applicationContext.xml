@@ -17,6 +17,7 @@
   <bb:serverMessages/>
 
   <bean id="initPojoConfigResolver" class="pl.bristleback.server.bristle.conf.resolver.init.PojoConfigResolver">
+    <property name="userContextClass" value="pl.bristleback.sample.chat.user.ChatUser"/>
   </bean>
 
   <bb:standaloneServer configurationResolver="initPojoConfigResolver"/>
