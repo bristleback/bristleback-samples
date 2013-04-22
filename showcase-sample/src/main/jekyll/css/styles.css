@@ -50,7 +50,7 @@ header {
   margin-top: 10px;
 }
 
-.standardList li{
+.standardList li {
   padding-top: 10px;
 }
 
@@ -121,9 +121,10 @@ footer {
 #menuOuter {
   float: left;
   width: 260px;
-  border-right: 1px #999999 solid;
-  border-bottom: 1px #999999 solid;
+  /*border-right: 1px #999999 solid;*/
+  border: 1px #999999 solid;
   height: 100%;
+  margin: 0 0 10px 10px;
 }
 
 .menuHeader {
@@ -133,6 +134,9 @@ footer {
   padding-top: 5px;
   padding-bottom: 5px;
   background-color: #999999;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .menuList {
@@ -146,10 +150,11 @@ footer {
 }
 
 #contentInner {
-  margin-left:265px;
+  margin-left: 275px;
+  margin-right: 10px;
+  margin-top: 10px;
   font-size: 0.8em;
 }
-
 
 @media only screen
 and (min-width : 650px) {
