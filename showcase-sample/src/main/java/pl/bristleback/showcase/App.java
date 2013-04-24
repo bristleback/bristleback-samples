@@ -21,9 +21,6 @@ public class App {
   }
 
   public static void main(String[] args) {
-    BasicConfigurator.configure();
-    Logger.getLogger("org.apache").setLevel(Level.INFO);
-
     ApplicationContext applicationContext = new ClassPathXmlApplicationContext(CONFIG_FILES);
 
     StandaloneServerRunner runner = (StandaloneServerRunner) applicationContext.getBean("bristlebackStandaloneServer");

@@ -1,3 +1,46 @@
 ---
 layout: default
 ---
+
+<div id=contentInner>
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Description</a></li>
+    </ul>
+
+    <div id="tabs-1">
+      <h4>Using Properties file configuration resolver</h4>
+
+      <p>
+        To use properties file Bristleback configuration resolver, you have to define
+        <code>pl.bristleback.server.bristle.conf.resolver.init.PropertiesFileConfigResolver</code> bean
+        and set it as used in Bristleback <code>&lt;bb:servlet&gt;</code> or <code>&lt;bb:standaloneServer&gt;</code>
+        tags.
+      </p>
+
+      <div class="codeblock">
+        {% highlight xml %}
+
+<bean id="propertiesFileConfigResolver" class="pl.bristleback.server.bristle.conf.resolver.init.PropertiesFileConfigResolver">
+  <property name="configurationPath" value="bristleback.properties"/>
+</bean>
+
+<bb:servlet configurationResolver="propertiesFileConfigResolver"/>
+
+        {% endhighlight %}
+      </div>
+
+      <p>
+        You can place your Properties file in project classpath to be recognized by Bristleback.
+        We use <a href="http://commons.apache.org/proper/commons-configuration/" class="classicLink">Apache Commons Configuration</a> module
+        to resolve Properties file from the classpath.
+      </p>
+
+      <p>
+        Details, like the configuration property names, can be found on our
+        <a href="https://github.com/bristleback/bristleback/wiki/Configuration---deeper-look#propertiesfileconfigresolver">wiki page</a>
+        and also in <code>PropertiesFileConfigResolver</code> class documentation.
+      </p>
+    </div>
+  </div>
+</div>
