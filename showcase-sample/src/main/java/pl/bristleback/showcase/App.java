@@ -1,8 +1,5 @@
 package pl.bristleback.showcase;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import pl.bristleback.server.bristle.app.StandaloneServerRunner;

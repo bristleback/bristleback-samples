@@ -4,11 +4,11 @@ function prepareClient() {
   var config = {
     serverUrl: (document.location.hostname == "samples.bristleback.pl") ? "ws://samples.bristleback.pl/chat/websocket" : "ws://localhost:8080/websocket",
 
-    OnOpen: function (event) {
+    onOpen: function (event) {
       switchToLoggingScreen();
       Sample.joinChatActionClass.executeDefault(Bristleback.CONNECTOR, Sample.username);
     },
-    OnClose: function (event) {
+    onClose: function (event) {
       switchToLoginScreen();
     }
   };
