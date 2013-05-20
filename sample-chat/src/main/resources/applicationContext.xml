@@ -20,6 +20,7 @@
     <!--<property name="serializationEngine" value="system.jacksonSerializer"/>-->
     <property name="enginePort" value="8080"/>
     <property name="userContextClass" value="pl.bristleback.sample.chat.user.ChatUser"/>
+    <property name="loggingLevel" value="DEBUG"/>
   </bean>
 
   <bb:standaloneServer configurationResolver="initPojoConfigResolver"/>

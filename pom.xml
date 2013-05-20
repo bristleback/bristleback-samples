@@ -12,6 +12,7 @@
   <modules>
     <module>scrumtable</module>
     <module>sample-chat</module>
+    <module>sample-chat-jc</module>
     <module>tutorial-chat</module>
     <module>showcase-sample</module>
   </modules>
