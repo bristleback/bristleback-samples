@@ -8,7 +8,7 @@ import pl.bristleback.sample.chat.user.ChatUser;
 import pl.bristleback.server.bristle.api.action.DefaultAction;
 import pl.bristleback.server.bristle.api.annotations.Action;
 import pl.bristleback.server.bristle.api.annotations.ActionClass;
-import pl.bristleback.server.bristle.api.annotations.Bind;
+import pl.bristleback.server.bristle.serialization.system.annotation.Bind;
 
 import java.util.List;
 
