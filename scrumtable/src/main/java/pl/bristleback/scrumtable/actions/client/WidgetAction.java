@@ -2,21 +2,13 @@ package pl.bristleback.scrumtable.actions.client;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import pl.bristleback.scrumtable.services.WidgetService;
 import pl.bristleback.scrumtable.vo.Position;
 import pl.bristleback.scrumtable.vo.Widget;
 import pl.bristleback.server.bristle.api.annotations.Action;
 import pl.bristleback.server.bristle.api.annotations.ActionClass;
-import pl.bristleback.server.bristle.engine.base.users.DefaultUser;
+import pl.bristleback.server.bristle.engine.user.BaseUserContext;
 
 
 @Controller
@@ -36,7 +28,7 @@ public class WidgetAction {
   }
 
   @Action
-  public void userLogged(DefaultUser user) {
+  public void userLogged(BaseUserContext user) {
     widgetService.sendAllWidgets(user);
   }
 

@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<div id=contentInner>
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Description</a></li>
+    </ul>
+    <div id="tabs-1">
+      <h4>Changing Websocket engine</h4>
+
+      <p>
+        When Websocket engine is not specified, Bristleback uses Jetty Standalone Websocket Engine.
+        This engine is not useful if you want to create web application. To switch to another engine,
+        simply change right property in Bristleback configuration. We will show you how to do it using
+        PojoConfigResolver configuration resolver (if you use PropertiesFileConfigResolver, check
+        <a href="use_property_config_resolver.html" class="classicLink">Use Property file configuration</a> chapter).
+      </p>
+
+      <div class="codeblock">
+        {% highlight java %}
+
+<bean id="initPojoConfigResolver" class="pl.bristleback.server.bristle.conf.resolver.init.PojoConfigResolver">
+  <property name="engineName" value="system.engine.jetty.servlet"/>
+</bean>
+
+        {% endhighlight %}
+      </div>
+      <p>
+        List of the currently supported Websocket engines can be found on
+        <a href="use_property_config_resolver.html" class="classicLink">Built in Server Engines</a>
+        wiki page. Note that using different engines may require adding new Maven dependencies.
+      </p>
+
+    </div>
+  </div>
+
+</div>

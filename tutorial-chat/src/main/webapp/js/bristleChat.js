@@ -6,7 +6,7 @@ function prepareClient() {
     /* url of backend server, 8765 is default port for standalone app, can be changed in server configuration */
     serverUrl: "ws://samples.bristleback.pl/tutorial-chat/websocket",
     /* function invoked after establishing connection */
-    OnOpen: function (event) {
+    onOpen: function (event) {
       /**
        *   Bristleback.CONNECTOR - alias for current user used in java script client
        *   Chat.username - variable will hold name of logged user
@@ -14,7 +14,7 @@ function prepareClient() {
       Chat.joinChatActionClass.executeDefault(Bristleback.CONNECTOR, Chat.username);
     },
     /* function invoked when connection is closed*/
-    OnClose: function (event) {
+    onClose: function (event) {
       alert("disconnected");
       Chat.joinChatActionClass.executeDefault(Bristleback.CONNECTOR, Chat.username);
     }

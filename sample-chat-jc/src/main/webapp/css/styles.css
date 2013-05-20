@@ -90,7 +90,7 @@ footer {
 #subheader {
   color: #cccccc;
   height: 20px;
-  margin-top: -20px;
+  margin-top:  5px;
   font-weight: bold;
   font-family: arial, serif;
   width: 95%;
@@ -242,11 +242,8 @@ and (min-width : 650px) {
   }
 
   #logoDiv img {
-    width: 90%;
-    max-width: 384px;
-    margin-top: -5px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 5px;
+    margin-left: 10px;
   }
 
   #rightHeaderDiv {

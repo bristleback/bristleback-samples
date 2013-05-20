@@ -1,0 +1,59 @@
+---
+layout: default
+---
+<div id=contentInner>
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Description</a></li>
+    </ul>
+
+    <div id="tabs-1">
+      <h4>Changing Bristleback configuration</h4>
+
+      <p>
+        Bristleback uses initial configuration to resolve all modules used in application.
+        Initial configuration resolver sets various server settings passed by application creator.
+        In this example, we will show how to change configuration using PojoConfigResolver.
+        Just to mention, using good Java IDE, such as Intellij Idea, you can easily list of all available properties.
+      </p>
+
+      <div class="codeblock">
+        {% highlight xml %}
+
+<bean id="initPojoConfigResolver" class="pl.bristleback.server.bristle.conf.resolver.init.PojoConfigResolver">
+  <property name="engineName" value="system.engine.jetty.servlet"/>
+  <property name="userContextClass" value="com.someproject.user.ChatUserContext"/>
+  <property name="userContextFactory" value="nameOfUserContextFactoryBean"/>
+</bean>
+
+        {% endhighlight %}
+      </div>
+
+      <p>
+        Some of the configuration property values should refer to the names of defined Spring beans.
+        As a example we can mention user context factory property. To make above configuration working,
+        we have to create <code>com.someproject.user.ChatUserContext</code> class and define
+        <code>nameOfUserContextFactoryBean</code> Spring bean:
+      </p>
+
+      <div class="codeblock">
+        {% highlight xml %}
+
+<bean id="nameOfUserContextFactoryBean" class="com.someproject.user.ChatUserContextFactory"/>
+
+        {% endhighlight %}
+      </div>
+
+      <p>
+        As it can be read in documentation, defined user context factory must implement
+        pl.bristleback.server.bristle.api.users.UserContextFactory interface.
+      </p>
+
+      <p>
+        List of all configuration properties (and their equivalents in
+        <a href="use_property_config_resolver.html" class="classicLink">PropertiesFileConfigResolver</a>)
+        can be found in <a href="https://github.com/bristleback/bristleback/wiki/Configuration---deeper-look#wiki-Using_initial_configuration_resolvers">Bristleback documentation</a>.
+      </p>
+    </div>
+  </div>
+</div>

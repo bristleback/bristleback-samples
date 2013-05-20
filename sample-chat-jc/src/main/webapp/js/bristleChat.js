@@ -2,12 +2,12 @@ var Sample = {};
 
 function prepareClient() {
   var config = {
-    serverUrl: "ws://samples.bristleback.pl/chat/websocket",
-    OnOpen: function (event) {
+    serverUrl: (document.location.hostname == "samples.bristleback.pl") ? "ws://samples.bristleback.pl/chat/websocket" : "ws://localhost:8080/websocket",
+    onOpen: function (event) {
       switchToLoggingScreen();
-      Sample.joinChatActionClass.executeDefault(Bristleback.CONNECTOR, Sample.username);
+      Sample.joinChatActionClass.executeDefault(Bristleback.USER_CONTEXT, Sample.username);
     },
-    OnClose: function (event) {
+    onClose: function (event) {
       switchToLoginScreen();
     }
   };
@@ -95,7 +95,7 @@ function addGUIListeners() {
     Sample.username = $("#login").val();
     if (Sample.client.isConnected()) {
       switchToLoggingScreen();
-      Sample.joinChatActionClass.executeDefault(Bristleback.CONNECTOR, Sample.username);
+      Sample.joinChatActionClass.executeDefault(Bristleback.USER_CONTEXT, Sample.username);
     } else {
       Sample.client.connect();
       switchToConnectingScreen();
@@ -116,7 +116,7 @@ function addGUIListeners() {
       text: textInput.val(),
       finished: finished
     };
-    Sample.sendTextActionClass.executeDefault(Bristleback.CONNECTOR, textMessage);
+    Sample.sendTextActionClass.executeDefault(Bristleback.USER_CONTEXT, textMessage);
     if (finished) {
       textInput.val("");
     }
