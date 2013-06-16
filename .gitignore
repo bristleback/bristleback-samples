@@ -4,11 +4,14 @@
 *.ipr
 *.iws
 */target/*
-*/*/*/.idea/*
-^*/.idea/*
 sample-chat/target/*
 scrumtable/target/*
 tutorial-chat/target/*
+
+android-client-sample/android-client/out/*
+android-client-sample/android-client/.idea/*
+android-client-sample/bristleback-app/target/*
+android-client-sample/bristleback-app/.idea/*
 
 # eclipse project files #
 #########################
@@ -17,12 +20,3 @@ tutorial-chat/target/*
 .classpath
 .springBeans
 .externalToolBuilders
-
-# android #
-^*/out/*
-*/out/*
-**/out/*
-
-^*/target/*
-*/target/*
-**/target/*
