@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bristleback Chat</title>
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/bristleback-0.3.0.js"></script>
+  <script type="text/javascript" src="js/android_sample.js"></script>
+  <script type="text/javascript" src="js/smoothie.js"></script>
+</head>
+
+<body>
+
+<header>
+  <div id="headerDiv">
+    <div id="logoDiv">
+      <a href="index.html" id="logoLink">
+        <img src="img/bristleback-logo-green.png" alt="bristleback.pl">
+      </a>
+
+    </div>
+
+    <div id="rightHeaderDiv">
+      <div class="rightHeaderElement">
+        <span class="fontOnDarkBackground b">Connection status: </span>
+        <img id="statusIcon" src="img/status-busy.png" alt="disconnected">
+        <span id="connectionStatus" class="fontOnDarkBackground b">disconnected</span>
+      </div>
+      <div id="sourcesDiv" class="rightHeaderElement">
+        <span class="fontOnDarkBackground b">Sources: </span>
+        <a href="https://github.com/bristleback/bristleback-samples" class="classicLink fontOnDarkBackground b">Samples
+          Git repo</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<content>
+  <div id="main">
+    <div id="content">
+
+      <div>
+        <div id="outer" class="notes-container">
+
+          <canvas id="mycanvas" width="400" height="100"></canvas>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</content>
+
+<footer>
+  &copy; Copyright 2012-2013 <a href="http://bristleback.pl" class="classicLinkBold">Bristleback Framework</a>
+</footer>
+
+
+</body>
+</html>

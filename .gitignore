@@ -3,7 +3,9 @@
 *.iml
 *.ipr
 *.iws
-target/*
+*/target/*
+*/*/*/.idea/*
+^*/.idea/*
 sample-chat/target/*
 scrumtable/target/*
 tutorial-chat/target/*
@@ -15,3 +17,12 @@ tutorial-chat/target/*
 .classpath
 .springBeans
 .externalToolBuilders
+
+# android #
+^*/out/*
+*/out/*
+**/out/*
+
+^*/target/*
+*/target/*
+**/target/*
