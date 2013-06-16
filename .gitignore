@@ -13,6 +13,9 @@ android-client-sample/android-client/.idea/*
 android-client-sample/bristleback-app/target/*
 android-client-sample/bristleback-app/.idea/*
 
+showcase-sample/src/main/jekyll/_site/*
+showcase-sample/target/*
+
 # eclipse project files #
 #########################
 .project
