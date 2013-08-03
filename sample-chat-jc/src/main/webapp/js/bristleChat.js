@@ -5,7 +5,7 @@ function prepareClient() {
     serverUrl: (document.location.hostname == "samples.bristleback.pl") ? "ws://samples.bristleback.pl/chat/websocket" : "ws://localhost:8080/websocket",
     onOpen: function (event) {
       switchToLoggingScreen();
-      Sample.joinChatActionClass.executeDefault(Bristleback.USER_CONTEXT, Sample.username);
+      Sample.joinChatActionClass.join(Bristleback.USER_CONTEXT, Sample.username);
     },
     onClose: function (event) {
       switchToLoginScreen();
@@ -25,9 +25,9 @@ function prepareActionClasses() {
 
 function defineJoinChatActionClass() {
   Sample.joinChatActionClass = Sample.dataController.getActionClass("JoinChat");
-  Sample.joinChatActionClass.defineDefaultAction().setResponseHandler(onLogInCallback)
+  Sample.joinChatActionClass.defineAction("join").setResponseHandler(onLogInCallback)
     .exceptionHandler
-    .setExceptionHandler("DeserializationException", validationErrorCallback)
+    .setExceptionHandler("ActionValidationException", validationErrorCallback)
     .setExceptionHandler("UserExistsException", userExistsErrorCallback);
 
   function onLogInCallback(users) {
@@ -95,7 +95,7 @@ function addGUIListeners() {
     Sample.username = $("#login").val();
     if (Sample.client.isConnected()) {
       switchToLoggingScreen();
-      Sample.joinChatActionClass.executeDefault(Bristleback.USER_CONTEXT, Sample.username);
+      Sample.joinChatActionClass.join(Bristleback.USER_CONTEXT, Sample.username);
     } else {
       Sample.client.connect();
       switchToConnectingScreen();

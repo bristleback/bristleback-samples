@@ -11,12 +11,11 @@ function prepareClient() {
        *   Bristleback.CONNECTOR - alias for current user used in java script client
        *   Chat.username - variable will hold name of logged user
        */
-      Chat.joinChatActionClass.executeDefault(Bristleback.CONNECTOR, Chat.username);
+      Chat.joinChatActionClass.join(Bristleback.USER_CONTEXT, Chat.username);
     },
     /* function invoked when connection is closed*/
     onClose: function (event) {
       alert("disconnected");
-      Chat.joinChatActionClass.executeDefault(Bristleback.CONNECTOR, Chat.username);
     }
   };
   /*new bristleback client created*/
@@ -39,9 +38,9 @@ function defineJoinChatActionClass() {
    * and two handlers fro exceptions
    */
   Chat.joinChatActionClass = Chat.dataController.getActionClass("JoinChat");
-  Chat.joinChatActionClass.defineDefaultAction().setResponseHandler(onLogInCallback)
+  Chat.joinChatActionClass.defineAction("join").setResponseHandler(onLogInCallback)
     .exceptionHandler
-    .setExceptionHandler("DeserializationException", validationErrorCallback)
+    .setExceptionHandler("ActionValidationException", validationErrorCallback)
     .setExceptionHandler("UserExistsException", userExistsErrorCallback);
 
   function onLogInCallback(users) {
