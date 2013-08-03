@@ -56,7 +56,7 @@ public class BristlebackServletConfig {
 
   @Bean
   public SimpleUrlHandlerMapping bristlebackHandlerMappings() {
-    Map<String, BristlebackHttpHandler> mappings = new HashMap<>();
+    Map<String, BristlebackHttpHandler> mappings = new HashMap<String, BristlebackHttpHandler>();
     mappings.put(SERVLET_MAPPING, bristlebackHttpHandler());
 
     SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
